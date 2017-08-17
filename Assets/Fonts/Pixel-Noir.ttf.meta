@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 2021253fa1ff8d04ebc1d92b1293c7dc
+timeCreated: 1502623914
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Pixel-Noir
+  fontNames:
+  - Pixel-Noir
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
