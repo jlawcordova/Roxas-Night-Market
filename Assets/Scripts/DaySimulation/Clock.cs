@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using DaySimulationUI;
 
 namespace DaySimulation
 {
@@ -67,11 +65,12 @@ namespace DaySimulation
                     CurrentHour++;
                 }
                 // Update the UI.
-                UIManager.instance.ClockText.text = CurrentHour.ToString() + ":" + CurrentMinute.ToString("00");
+                UIManager.instance.ClockText.text = CurrentHour.ToString() + ":" + CurrentMinute.ToString("00") + "PM";
             }
 
             if (CurrentHour >= EndingHour && CurrentMinute >= EndingMinute)
             {
+                Progress.ProgressManager.SaveProgressToFile();
                 SceneManager.LoadScene(0);
             }
             
