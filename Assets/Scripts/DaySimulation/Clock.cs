@@ -71,7 +71,7 @@ namespace DaySimulation
             if (CurrentHour >= EndingHour && CurrentMinute >= EndingMinute)
             {
                 Progress.ProgressManager.SaveProgressToFile();
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(1);
             }
             
             deltaTimeElapsed++;

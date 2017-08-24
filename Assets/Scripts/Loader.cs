@@ -13,7 +13,7 @@ public class Loader : MonoBehaviour {
 	void Update () {
         if (Time <= 0)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
         Time--;
 	}

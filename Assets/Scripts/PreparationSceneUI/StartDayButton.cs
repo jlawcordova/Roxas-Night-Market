@@ -15,7 +15,7 @@ namespace PreparationSceneUI
         /// <param name="eventData">Data on the pointer event.</param>
         public void OnPointerClick(PointerEventData eventData)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
     }
 }

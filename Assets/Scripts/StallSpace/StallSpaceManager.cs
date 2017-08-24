@@ -40,14 +40,16 @@ namespace StallSpace
             // Create the stalls based on the progress.
             foreach (StallSpaceInformation stallSpace in ProgressManager.StallSpaces)
             {
+                GameObject stall;
                 switch (stallSpace.SpaceType)
                 {
                     case StallSpaceType.EmptyStall:
-                        Instantiate(EmptyStallPrefab, new Vector3(((stallSpace.StallSpaceNumber - 1) * 4), 0, 0), Quaternion.identity);
+                        stall = Instantiate(EmptyStallPrefab, new Vector3(((stallSpace.StallSpaceNumber - 1) * 4), 0, 0), Quaternion.identity);
+                        stall.GetComponent<StallSpace>().StallSpaceNumber = stallSpace.StallSpaceNumber;
 
                         break;
                     case StallSpaceType.Stall:
-                        GameObject stall = Instantiate(KwekKwekStallPrefab, new Vector3(((stallSpace.StallSpaceNumber - 1) * 4), 2, 0), Quaternion.identity);
+                        stall = Instantiate(KwekKwekStallPrefab, new Vector3(((stallSpace.StallSpaceNumber - 1) * 4), 2, 0), Quaternion.identity);
                         stall.GetComponent<Stall>().StallSpaceNumber = stallSpace.StallSpaceNumber;
                         stall.GetComponent<Stall>().StockCount = stallSpace.StockCount;
 

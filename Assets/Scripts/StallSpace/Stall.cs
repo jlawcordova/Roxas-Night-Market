@@ -7,22 +7,13 @@ using Progress;
 
 namespace StallSpace
 {
-    public class Stall : MonoBehaviour, IStallSpaceInformation
+    public class Stall : StallSpace
     {
         #region Stall Properties
         /// <summary>
-        /// The stall space type. Always Stall type.
-        /// </summary>
-        public StallSpaceType SpaceType { get; set; }
-        /// <summary>
-        /// The stall space number of the stall.
-        /// </summary>
-        public int StallSpaceNumber { get; set; }
-
-        /// <summary>
         /// The amount of stock the stall has.
         /// </summary>
-        public int StockCount
+        public new int StockCount
         {
             get
             {
@@ -35,7 +26,7 @@ namespace StallSpace
                 SetStockCountDisplay(stockCount);
             }
         }
-        private int stockCount = 5;
+        private int stockCount;
 
         /// <summary>
         /// The maximum number of customers that can be in the line.

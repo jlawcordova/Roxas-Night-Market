@@ -128,6 +128,11 @@ namespace Customer
             // Set the boxcollider.
             boxCollider = GetComponent<BoxCollider2D>();
 
+            if (IsGoingRight)
+            {
+                transform.GetComponent<SpriteRenderer>().flipX = true;
+            }
+
             // Set the customer's patience.
             currentCustomerPatience = CustomerPatience;
         }

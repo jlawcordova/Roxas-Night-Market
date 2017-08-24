@@ -25,11 +25,11 @@ namespace PreparationSceneUI
         /// <summary>
         /// Flag to indicate that the panel is going down.
         /// </summary>
-        private bool goingDown = false;
+        private bool goingUp = false;
         /// <summary>
         /// Flag to indicate that the panel is going up.
         /// </summary>
-        private bool goingUp = false;
+        private bool goingDown = false;
         /// <summary>
         /// Flag to indicate that the panel is resetting.
         /// </summary>
@@ -63,8 +63,8 @@ namespace PreparationSceneUI
         void Start()
         {
             // Set the panel's position to be on the upper middle location.
-            InitialPanelPosition = new Vector3(Screen.width / 2, Screen.height + transform.GetComponent<RectTransform>().rect.height, transform.parent.transform.position.z);
-            FinalPanelPosition = new Vector3(Screen.width / 2, Screen.height - transform.GetComponent<RectTransform>().rect.height/2, transform.parent.transform.position.z);
+            InitialPanelPosition = new Vector3(Screen.width / 2, -transform.GetComponent<RectTransform>().rect.height/2, transform.parent.transform.position.z);
+            FinalPanelPosition = new Vector3(Screen.width / 2, transform.GetComponent<RectTransform>().rect.height/2 +30, transform.parent.transform.position.z);
 
             // Create a new list for the buttons on the panel.
             ButtonsOnPanel = new List<GameObject>();
@@ -79,35 +79,35 @@ namespace PreparationSceneUI
         void Update()
         {
             // If the panel is set to go down, move it down.
-            if (goingDown)
+            if (goingUp)
             {
-                if (Camera.main.WorldToScreenPoint(transform.position).y > FinalPanelPosition.y)
+                if (Camera.main.WorldToScreenPoint(transform.position).y < FinalPanelPosition.y)
                 {
-                    transform.position -= new Vector3(0, PanelSpeed, 0);
+                    transform.position += new Vector3(0, PanelSpeed, 0);
                 }
                 else
                 {
                     // Stop the panel from going down once it reaches the end location.
-                    goingDown = false;
+                    goingUp = false;
                 }
             }
             // If the panel is set to go up, move it up.
-            if (goingUp)
+            if (goingDown)
             {
-                if (Camera.main.WorldToScreenPoint(transform.position).y < InitialPanelPosition.y)
+                if (Camera.main.WorldToScreenPoint(transform.position).y >= InitialPanelPosition.y)
                 {
-                    transform.position += new Vector3(0, PanelSpeed, 0);
+                    transform.position -= new Vector3(0, PanelSpeed, 0);
                 }
                 else
                 {
                     RemoveButtons();
 
                     // Stop the panel from going up once it reaches the end location.
-                    goingUp = false;
+                    goingDown = false;
                     // If the panel was resetting, move it down again.
                     if (resetting)
                     {
-                        GoDown();
+                        GoUp();
                         resetting = false;
                     }
                 }
@@ -128,7 +128,7 @@ namespace PreparationSceneUI
         /// <summary>
         /// Moves the panel down.
         /// </summary>
-        public void GoDown()
+        public void GoUp()
         {
             // Remove the buttons that are on the panel.
             RemoveButtons();
@@ -148,8 +148,8 @@ namespace PreparationSceneUI
                     throw new System.ArgumentException("Clicked object type invalid.");
             }
 
-            goingUp = false;
-            goingDown = true;
+            goingDown = false;
+            goingUp = true;
         }
 
         /// <summary>
@@ -157,18 +157,18 @@ namespace PreparationSceneUI
         /// </summary>
         public void Reset()
         {
-            goingUp = true;
-            goingDown = false;
+            goingDown = true;
+            goingUp = false;
             resetting = true;
         }
 
         /// <summary>
         /// Moves the panel up.
         /// </summary>
-        public void GoUp()
+        public void GoDown()
         {
-            goingDown = false;
-            goingUp = true;
+            goingUp = false;
+            goingDown = true;
         }
     }
 }

@@ -48,11 +48,11 @@ namespace PreparationSceneUI
                 // Check if nothing is clicked.
                 // If the click is below the panel with nothing hit, make the panel go up.
                 if (!didHitObject &&
-                    Input.mousePosition.y < (Camera.main.WorldToScreenPoint(UIManager.instance.DisplayedSelectionPanel.transform.position) 
-                    - new Vector3(0, UIManager.instance.DisplayedSelectionPanel.GetComponent<RectTransform>().rect.height / 2, 0)).y)
+                    Input.mousePosition.y > (Camera.main.WorldToScreenPoint(UIManager.instance.DisplayedSelectionPanel.transform.position) 
+                    + new Vector3(0, UIManager.instance.DisplayedSelectionPanel.GetComponent<RectTransform>().rect.height / 2, 0)).y)
                 {
                     UIManager.instance.SelectedStallSpace = null;
-                    UIManager.instance.DisplayedSelectionPanel.GetComponent<SelectionPanel>().GoUp();
+                    UIManager.instance.DisplayedSelectionPanel.GetComponent<SelectionPanel>().GoDown();
                 }
             }
         }
@@ -76,7 +76,7 @@ namespace PreparationSceneUI
                 {
                     UIManager.instance.SelectedStallSpace = selectedHit.transform.gameObject;
                     UIManager.instance.SelectedStallSpaceType = stallSpaceType;
-                    UIManager.instance.DisplayedSelectionPanel.GetComponent<SelectionPanel>().GoDown();
+                    UIManager.instance.DisplayedSelectionPanel.GetComponent<SelectionPanel>().GoUp();
                 }
                 // Reset the panel if a new object has been selected.
                 else if (selectedHit.transform.gameObject != UIManager.instance.SelectedStallSpace)
