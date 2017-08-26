@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Customer
 {
@@ -65,12 +63,15 @@ namespace Customer
             if (currentAppearanceTime < AppearanceTime)
             {
                 currentAppearanceTime++;
+
                 // Offset the bubble for its animation.
                 animationOffset += new Vector3(0, Speed, 0);
+
+                // Get the amount of offset made with respect to the customer position.
+                Vector3 customerOffset = new Vector3(customer.CustomerBubbleOffset.x * BubbleDirection.x, customer.CustomerBubbleOffset.y, customer.CustomerBubbleOffset.z);
+
                 // Move the bubble depending on its customer's position.
-                transform.position = CustomerUsingTheBubble.transform.position + 
-                    new Vector3(customer.CustomerBubbleOffset.x * BubbleDirection.x, customer.CustomerBubbleOffset.y, customer.CustomerBubbleOffset.z) + 
-                    animationOffset;
+                transform.position = CustomerUsingTheBubble.transform.position + customerOffset + animationOffset;
             }
             else
             {

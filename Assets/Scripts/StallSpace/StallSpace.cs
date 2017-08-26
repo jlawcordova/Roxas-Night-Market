@@ -1,8 +1,11 @@
-﻿using Progress;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace StallSpace
 {
+    /// <summary>
+    ///  Represents a stall space on the scene.
+    ///  A stall space can either be a stall or an empty stall.
+    /// </summary>
     public class StallSpace : MonoBehaviour, IStallSpaceInformation
     {
         /// <summary>

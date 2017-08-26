@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SpeedManager : MonoBehaviour {
     
     /// <summary>
     /// The speed manager singleton instance.
     /// </summary>
+    [HideInInspector]
     public static SpeedManager instance;
 
     /// <summary>
@@ -15,10 +14,11 @@ public class SpeedManager : MonoBehaviour {
     public float SpeedUpScale;
 
     /// <summary>
-    /// During the initialization.
+    /// Awakening of the speed manager.
     /// </summary>
-    void Start()
+    void Awake()
     {
+        // Only one speed manager can exist.
         if (instance == null)
         {
             instance = this;

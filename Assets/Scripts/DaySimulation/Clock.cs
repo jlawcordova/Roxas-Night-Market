@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
-using DaySimulationUI;
 
 namespace DaySimulation
 {
@@ -9,14 +9,34 @@ namespace DaySimulation
     /// </summary>
     public class Clock : MonoBehaviour
     {
+        /// <summary>
+        /// Clock singleton instance.
+        /// </summary>
+        [HideInInspector]
+        public static Clock instance;
+
         #region Clock Properties
         /// <summary>
         /// The amount of delta time per clock minute increment.
         /// </summary>
         public int DeltaTimePerMinuteIncrement;
+
+        /// <summary>
+        /// The starting hour of the simulation.
+        /// </summary>
         public int StartingHour;
+        /// <summary>
+        /// The starting minute of the simulation.
+        /// </summary>
         public int StartingMinute;
+
+        /// <summary>
+        /// The hour at which simulation will end.
+        /// </summary>
         public int EndingHour;
+        /// <summary>
+        /// The minute at which simulation will end.
+        /// </summary>
         public int EndingMinute;
         #endregion
 
@@ -44,8 +64,33 @@ namespace DaySimulation
         /// </summary>
         private const int MinutesPerHour = 60;
 
+        /// <summary>
+        /// Allows listeners to be informed that the clock has been updated.
+        /// </summary>
+        public event EventHandler ClockUpdated;
+
+        /// <summary>
+        /// Awakening of the clock.
+        /// </summary>
+        void Awake()
+        {
+            // Only one clock instance is allowed.
+            if (instance == null)
+            {
+                instance = this;
+            }
+            else if (instance != this)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        /// <summary>
+        /// Initialization of the clock.
+        /// </summary>
         void Start()
         {
+            // Set the starting hour and minute.
             CurrentHour = StartingHour;
             CurrentMinute = StartingMinute;
         }
@@ -64,10 +109,15 @@ namespace DaySimulation
                     CurrentMinute = 0;
                     CurrentHour++;
                 }
-                // Update the UI.
-                UIManager.instance.ClockText.text = CurrentHour.ToString() + ":" + CurrentMinute.ToString("00") + "PM";
+
+                // Inform the listeners that the clock has been updated.
+                if (ClockUpdated != null)
+                {
+                    ClockUpdated(this, new EventArgs());
+                }
             }
 
+            // End the simulation when the end hour and minute has been reached.
             if (CurrentHour >= EndingHour && CurrentMinute >= EndingMinute)
             {
                 Progress.ProgressManager.SaveProgressToFile();

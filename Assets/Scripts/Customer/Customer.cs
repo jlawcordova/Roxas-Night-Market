@@ -1,6 +1,6 @@
-﻿using StallSpace;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using StallSpace;
 
 namespace Customer
 {
@@ -21,7 +21,12 @@ namespace Customer
         /// <summary>
         /// Point where customer stops and is destroyed.
         /// </summary>
-        public int EndPoint;
+        public float EndPoint;
+
+        /// <summary>
+        /// The animator of the customer.
+        /// </summary>
+        private Animator animator;
         #endregion
 
         #region Interacting Layers Properties
@@ -47,6 +52,10 @@ namespace Customer
         /// The amount of patience the customer has left.
         /// </summary>
         public int CustomerPatience = 390;
+        /// <summary>
+        /// 1/x chance the customer will perform a special move.
+        /// </summary>
+        public int CustomerSpecialChance = 1750;
         #endregion
 
         #region Current Customer Values
@@ -125,6 +134,7 @@ namespace Customer
         /// </summary>
         void Start()
         {
+            animator = gameObject.GetComponent<Animator>();
             // Set the boxcollider.
             boxCollider = GetComponent<BoxCollider2D>();
 
@@ -151,8 +161,21 @@ namespace Customer
                 {
                     case CustomerState.Walking:
                         #region Walking Procedure
-                        // Keep the customer walking straight (depending on the direction), until attracted to a stall.
-                        Walk(IsGoingRight ? Speed : Speed * -1, 0);
+                        // Customer has a random chance to perform a special move.
+                        if (Random.Range(0, CustomerSpecialChance) < 1)
+                        {
+                            animator.SetTrigger("IsSpecial");
+
+                            break;
+                        }
+
+                        // Only allow the customer to walk when it is doing a special move.
+                        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Special"))
+                        {
+                            // Keep the customer walking straight (depending on the direction), until attracted to a stall.
+                            Walk(IsGoingRight ? Speed : Speed * -1, 0);
+                        }
+                       
 
                         // Raycast which contains the stall that is detected by the customer.
                         RaycastHit2D hit;
@@ -177,6 +200,8 @@ namespace Customer
                                         currentStall.AddACustomerToLine();
                                         // If attracted, set the customer to walk to the stall.
                                         customerStatus = CustomerState.WalkingToStall;
+                                        animator.SetTrigger("IsWalkingUp");
+
                                         // Bring customer to the front of all other objects.
                                         transform.GetComponent<SpriteRenderer>().sortingOrder += 1;
                                         // Set the customer who is walking behind to be in the upmost layer.
@@ -199,6 +224,7 @@ namespace Customer
                         if (currentStall.GetComponent<StallSpace.Stall>().StockCount <= 0)
                         {
                             customerStatus = CustomerState.WalkingAwayFromStall;
+                            animator.SetTrigger("IsWalkingDown");
 
                             break;
                         }
@@ -216,6 +242,7 @@ namespace Customer
                                 // TODO Generate different bubble depending on stall type.
                                 // When stall is reached, set the customer to buy from the stall.
                                 customerStatus = CustomerState.BuyingFromStall;
+                                animator.SetTrigger("IsIdle");
                                 GenerateBubble(CustomerBubbleType.Kwekkwek); 
                             }
                         }
@@ -223,6 +250,7 @@ namespace Customer
                         {
                             //Wait in line if there are other customers
                             customerStatus = CustomerState.WaitingInLine;
+                            animator.SetTrigger("IsIdle");
                             break;
                         }
 
@@ -234,6 +262,7 @@ namespace Customer
                         if (currentStall.GetComponent<StallSpace.Stall>().StockCount <= 0)
                         {
                             customerStatus = CustomerState.WalkingAwayFromStall;
+                            animator.SetTrigger("IsWalkingDown");
 
                             break;
                         }
@@ -242,6 +271,7 @@ namespace Customer
                         if (!IsOtherCustomerInFrontBuying())
                         {
                             customerStatus = CustomerState.WalkingToStall;
+                            animator.SetTrigger("IsWalkingUp");
                             break;
                         }
                         // If customer lost all patience, make customer leave.
@@ -249,6 +279,8 @@ namespace Customer
                         {
                             GenerateBubble(CustomerBubbleType.Time);
                             customerStatus = CustomerState.WalkingAwayFromStall;
+                            animator.SetTrigger("IsWalkingDown");
+
                             currentStall.RemoveACustomerFromLine();
 
                             currentCustomerPatience = CustomerPatience;
@@ -268,6 +300,8 @@ namespace Customer
                         {
                             GenerateBubble(CustomerBubbleType.Time);
                             customerStatus = CustomerState.WalkingAwayFromStall;
+                            animator.SetTrigger("IsWalkingDown");
+
                             currentStall.RemoveACustomerFromLine();
 
                             // Reset patience time.
@@ -280,6 +314,12 @@ namespace Customer
                         {
                             GenerateBubble(CustomerBubbleType.Happy);
                             customerStatus = CustomerState.BoughtFromStall;
+                            animator.SetTrigger("IsWalking");
+                            if (!IsGoingRight)
+                            {
+                                transform.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                            }
+
                             currentStall.Buy(1);
 
                             // Get the position where the customer will walk to after buying.
@@ -307,8 +347,15 @@ namespace Customer
                         if (transform.position.x >= positionAfterBuying.x)
                         {
                             customerStatus = CustomerState.WalkingAwayFromStall;
+                            animator.SetTrigger("IsWalkingDown");
+                            if (!IsGoingRight)
+                            {
+                                transform.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+                            }
+
                             // Remove the customer from the stall's line after buying.
                             currentStall.RemoveACustomerFromLine();
+                            break;
                         }
 
                         break;
@@ -322,6 +369,7 @@ namespace Customer
                         {
                             // Make the customer walk normally again upon reaching the street.
                             customerStatus = CustomerState.Walking;
+                            animator.SetTrigger("IsWalking");
                         }
 
                         break;

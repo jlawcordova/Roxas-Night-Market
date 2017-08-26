@@ -14,9 +14,35 @@ namespace Customer
         /// </summary>
         public GameObject Customer;
         /// <summary>
+        /// The X position of the customer when instantiated on the left.
+        /// </summary>
+        public float CustomerLeftInstatiationPosition;
+        /// <summary>
+        /// The X position of the customer when instantiated on the right.
+        /// </summary>
+        public float CustomerRightInstatiationPosition;
+        /// <summary>
+        /// Possible Y positions that the customer can have when instantiated.
+        /// </summary>
+        public float[] CustomerYInstantiation;
+        /// <summary>
         /// The amount of interval between instantiating another customer.
         /// </summary>
-        public int CustomerInstantiationInterval = 30;
+        public int CustomerInstantiationInterval;
+        /// <summary>
+        /// xx/100 chance to generate a customer per customer instantiation interval.
+        /// </summary>
+        public int GeneratingChance;
+
+        /// <summary>
+        /// The X position of the customer on the left where it gets destroyed.
+        /// </summary>
+        public float CustomerLeftEndPosition;
+        /// <summary>
+        /// The X position of the customer on the right where it gets destroyed.
+        /// </summary>
+        public float CustomerRightEndPosition;
+
         /// <summary>
         /// The hour on the clock object to stop generating customers.
         /// </summary>
@@ -53,24 +79,33 @@ namespace Customer
             // Continue to generate while allowed to do so.
             if (runGenerator)
             {
-                // TODO Implement better customer generating algorithm.
                 if (timer >= CustomerInstantiationInterval)
                 {
-                    if (Random.Range(0, 100) <= 100)
+                    // Generate a customer when the chance is hit.
+                    if (Random.Range(0, 100) < GeneratingChance)
                     {
-                        int test = Random.Range(0, 2);
-                        if (test == 0)
+                        // 50/50 chance to place the customer either on the left or right.
+                        if (Random.Range(0, 2) == 0)
                         {
                             Customer.GetComponent<Customer>().IsGoingRight = true;
-                            Customer.GetComponent<Customer>().EndPoint = 9;
+                            Customer.GetComponent<Customer>().EndPoint = CustomerRightEndPosition;
                         }
                         else
                         {
                             Customer.GetComponent<Customer>().IsGoingRight = false;
-                            Customer.GetComponent<Customer>().EndPoint = -9;
+                            Customer.GetComponent<Customer>().EndPoint = CustomerLeftEndPosition;
                         }
-                        Instantiate(Customer, new Vector3(Customer.GetComponent<Customer>().IsGoingRight ? -9 : 9, Random.Range(-4, -2)), Quaternion.identity);
+
+                        // Instantiate the customer to its proper position.
+                        Vector3 customerPosition = new Vector3(
+                            Customer.GetComponent<Customer>().IsGoingRight ? CustomerLeftInstatiationPosition : CustomerRightInstatiationPosition,
+                            CustomerYInstantiation[Random.Range(0, CustomerYInstantiation.Length)], 
+                            0);
+                        
+                        Instantiate(Customer, customerPosition, Quaternion.identity);
                     }
+                    
+                    // Reset instantiation timer after instantiating a customer.
                     timer = 0;
                 }
 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Progress;
 
 namespace StallSpace
@@ -11,8 +12,17 @@ namespace StallSpace
         /// <summary>
         /// The stall space manager singleton instance.
         /// </summary>
+        [HideInInspector]
         public static StallSpaceManager instance;
 
+        #region Stall Manager Properties
+        /// <summary>
+        /// The amount of X intervals of the stalls.
+        /// </summary>
+        public float StallSpaceIntervals;
+        #endregion
+
+        #region Stall Prefabs
         /// <summary>
         /// Used to instantiate empty stalls.
         /// </summary>
@@ -21,13 +31,14 @@ namespace StallSpace
         /// Used to instantiate kwekkwek stalls.
         /// </summary>
         public GameObject KwekKwekStallPrefab;
+        #endregion
 
         /// <summary>
-        /// Initialization of the stall space manager.
+        /// Awakening of the stall manager.
         /// </summary>
-        void Start()
+        void Awake()
         {
-            // The stall space manager is a singleton.
+            // Only one stall manager can exist.
             if (instance == null)
             {
                 instance = this;
@@ -36,26 +47,40 @@ namespace StallSpace
             {
                 Destroy(gameObject);
             }
+        }
 
+        /// <summary>
+        /// Initialization of the stall space manager.
+        /// </summary>
+        void Start()
+        {
             // Create the stalls based on the progress.
             foreach (StallSpaceInformation stallSpace in ProgressManager.StallSpaces)
             {
+                // Temporary gameobject variable.
                 GameObject stall;
+
+                // Create stall space content based on the progress.
                 switch (stallSpace.SpaceType)
                 {
                     case StallSpaceType.EmptyStall:
-                        stall = Instantiate(EmptyStallPrefab, new Vector3(((stallSpace.StallSpaceNumber - 1) * 4), 0, 0), Quaternion.identity);
+                        #region Create Empty Stall Space
+                        stall = Instantiate(EmptyStallPrefab, new Vector3(((stallSpace.StallSpaceNumber - 1) * StallSpaceIntervals), 0, 0), Quaternion.identity);
                         stall.GetComponent<StallSpace>().StallSpaceNumber = stallSpace.StallSpaceNumber;
 
                         break;
-                    case StallSpaceType.Stall:
-                        stall = Instantiate(KwekKwekStallPrefab, new Vector3(((stallSpace.StallSpaceNumber - 1) * 4), 2, 0), Quaternion.identity);
-                        stall.GetComponent<Stall>().StallSpaceNumber = stallSpace.StallSpaceNumber;
-                        stall.GetComponent<Stall>().StockCount = stallSpace.StockCount;
+                        #endregion
 
+                    case StallSpaceType.Stall:
+                        #region Create Stall
+                        stall = Instantiate(KwekKwekStallPrefab, new Vector3(((stallSpace.StallSpaceNumber - 1) * StallSpaceIntervals), 2, 0), Quaternion.identity);
+                        stall.GetComponent<StallSpace>().StallSpaceNumber = stallSpace.StallSpaceNumber;
+                        stall.GetComponent<Stall>().StockCount = stallSpace.StockCount;
+                        #endregion
+                        
                         break;
                     default:
-                        break;
+                        throw new ArgumentException("Invalid stall space type.");
                 }
             }
         }

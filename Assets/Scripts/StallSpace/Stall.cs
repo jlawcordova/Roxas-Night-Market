@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using PreparationSceneUI;
+﻿using UnityEngine;
 using Progress;
 
 namespace StallSpace
 {
+    /// <summary>
+    /// Represents a stall which sells products to customers.
+    /// </summary>
     public class Stall : StallSpace
     {
         #region Stall Properties
+        /// <summary>
+        /// The maximum amount of stock the stall can have.
+        /// </summary>
+        public int MaxStockCount;
         /// <summary>
         /// The amount of stock the stall has.
         /// </summary>
@@ -31,11 +34,7 @@ namespace StallSpace
         /// <summary>
         /// The maximum number of customers that can be in the line.
         /// </summary>
-        public int MaxCustomersInLine = 3;
-        /// <summary>
-        /// The current number of customer in line.
-        /// </summary>
-        private int customersInLine = 0;
+        public int MaxCustomersInLine;
         /// <summary>
         /// The number of customer currently in line is read-only to other objects that interact.
         /// </summary>
@@ -46,17 +45,26 @@ namespace StallSpace
                 return customersInLine;
             }
         }
+        private int customersInLine = 0;
 
         /// <summary>
         /// The percentage of the stall's probability to attract a customer.
         /// </summary>
-        public int AttractionPercentage = 50;
+        public int AttractionPercentage;
         /// <summary>
         /// Time it takes to serve the customer.
         /// </summary>
-        public int ServingTime = 270;
+        public int ServingTime;
+        /// <summary>
+        /// The cost to restock this stall.
+        /// </summary>
+        public int StallRestockCost;
+        /// <summary>
+        /// The The amount of money earned by the stall per customer purchase.
+        /// </summary>
+        public int StallProductPurchaseCost;
         #endregion
-
+   
         #region Current Stall Values
         /// <summary>
         /// The current amount the stall has spent serving.
@@ -73,7 +81,8 @@ namespace StallSpace
             }
         }
         #endregion
-        
+
+        #region Stock Count Display Properties
         /// <summary>
         /// The object that displays the stock count.
         /// </summary>
@@ -84,12 +93,25 @@ namespace StallSpace
         private GameObject stockCountDisplay;
 
         /// <summary>
+        /// The X offset of the stock count display from the stall's center.
+        /// </summary>
+        private float StockCountDisplayXOffset = 0.3f;
+        /// <summary>
+        /// The Y offset of the stock count display from the stall's center.
+        /// </summary>
+        private float StockCountDisplayyOffset = -1f;
+        #endregion
+
+        /// <summary>
         /// Initialization of the stall.
         /// </summary>
         void Start()
         {
             // Set the stock count display.
-            StockCountDisplay.transform.position = new Vector3(transform.GetComponent<RectTransform>().rect.size.x / 2 + 0.3f, transform.GetComponent<RectTransform>().rect.size.y / 2 - 1f, 0);
+            StockCountDisplay.transform.position = new Vector3(transform.GetComponent<RectTransform>().rect.size.x / 2 + StockCountDisplayXOffset, 
+                transform.GetComponent<RectTransform>().rect.size.y / 2 + StockCountDisplayyOffset, 
+                0);
+
             stockCountDisplay = Instantiate(StockCountDisplay, gameObject.transform);
             SetStockCountDisplay(stockCount);
         }
@@ -112,7 +134,10 @@ namespace StallSpace
         public void Buy(int amount)
         {
             StockCount--;
+
+            // Update progress.
             ProgressManager.StallSpaces[StallSpaceNumber].StockCount = StockCount;
+            ProgressManager.Money += StallProductPurchaseCost;
         }
 
         /// <summary>

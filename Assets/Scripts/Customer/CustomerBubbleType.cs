@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Customer
+﻿namespace Customer
 {
     /// <summary>
     /// The different types of customer bubbles.
@@ -13,7 +9,7 @@ namespace Customer
         Happy,
         // Time customer bubble. Appears when the customer is impatient.
         Time,
-        // KwekKwek customer bubble. Appears when the customer is buying kwekkwek.
+        // KwekKwek customer bubble. Appears when the customer is buying from a kwekkwek stall.
         Kwekkwek
     }
 }

@@ -1,9 +1,7 @@
-﻿using Progress;
-using UnityEngine;
-
-namespace StallSpace
+﻿namespace StallSpace
 {
-    public class EmptyStall : StallSpace
-    {
-    }
+    /// <summary>
+    /// Represents an empty stall space.
+    /// </summary>
+    public class EmptyStall : StallSpace {}
 }
