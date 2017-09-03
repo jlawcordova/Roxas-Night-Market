@@ -6,6 +6,7 @@
     public enum PurchaseType 
     {
         // Purchase a stall.
-        BuyStall
+        BuyStall,
+        UpgradeKwekkwekStall
     }
 }

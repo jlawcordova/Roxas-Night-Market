@@ -20,10 +20,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 987
-  m_MinSize: {x: 681, y: 342}
-  m_MaxSize: {x: 12006, y: 8042}
+  m_MinSize: {x: 679, y: 321}
+  m_MaxSize: {x: 12004, y: 8021}
   vertical: 0
-  controlID: 11739
+  controlID: 13630
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -120,10 +120,10 @@ MonoBehaviour:
     y: 0
     width: 1365
     height: 987
-  m_MinSize: {x: 404, y: 342}
-  m_MaxSize: {x: 8004, y: 8042}
+  m_MinSize: {x: 402, y: 321}
+  m_MaxSize: {x: 8002, y: 8021}
   vertical: 1
-  controlID: 11740
+  controlID: 13631
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,10 +144,10 @@ MonoBehaviour:
     y: 0
     width: 1365
     height: 600
-  m_MinSize: {x: 404, y: 221}
-  m_MaxSize: {x: 8004, y: 4021}
+  m_MinSize: {x: 402, y: 221}
+  m_MaxSize: {x: 8002, y: 4021}
   vertical: 0
-  controlID: 11741
+  controlID: 13632
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -201,9 +201,9 @@ MonoBehaviour:
     height: 579
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: e2fbffff
-    m_LastClickedID: -1054
-    m_ExpandedIDs: 9832faff4a01fcff5201fcfff411fdff508dffffe0fbffffe2fbffffe4fbffffe6fbffff000000005a340000f8690000026a00004c7a0000268c0000
+    m_SelectedIDs: e4fbffff
+    m_LastClickedID: -1052
+    m_ExpandedIDs: c6d1feff7cd2feff9ed3feffcad3feff16d4feff1ed4feffe0fbffffe2fbffffe4fbffffe6fbffff00000000fc2d00009a2e0000b82f0000fe2f0000cc3a0000e23a00008a5000006c6700001c680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -221,7 +221,11 @@ MonoBehaviour:
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 5}
     m_SearchString: 
-  m_ExpandedScenes: []
+  m_ExpandedScenes:
+  - LogoScene
+  - PreparationScene
+  - PurchaseScene
+  - DaySimulationScene
   m_CurrenRootInstanceID: 0
   m_Locked: 0
   m_CurrentSortingName: TransformSorting
@@ -243,8 +247,8 @@ MonoBehaviour:
     y: 0
     width: 952
     height: 600
-  m_MinSize: {x: 204, y: 221}
-  m_MaxSize: {x: 4004, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 2}
   m_Panes:
   - {fileID: 8}
@@ -252,7 +256,7 @@ MonoBehaviour:
   - {fileID: 9}
   - {fileID: 10}
   m_Selected: 1
-  m_LastSelected: 0
+  m_LastSelected: 3
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -391,10 +395,10 @@ MonoBehaviour:
     - {x: 552, y: 326.2}
     - {x: 532.80005, y: 227.40001}
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: ebfc1de236077b943941433a93460ee2,
+  m_AnimatorController: {fileID: 9100000, guid: 807824836e6b0354a84dcfa2c511428c,
     type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 1107381844034352548, guid: ebfc1de236077b943941433a93460ee2,
+  - m_Target: {fileID: 1107364825858348596, guid: 807824836e6b0354a84dcfa2c511428c,
       type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
@@ -471,19 +475,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Scripts/Purchase/UI
+    - Assets/Prefabs/Preparation/UI
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scripts/Purchase/UI
+  - Assets/Prefabs/Preparation/UI
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\Junel Cordova\Documents\Roxas Night Market
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 295}
-    m_SelectedIDs: d0680000
-    m_LastClickedID: 26832
-    m_ExpandedIDs: 00000000f02400001825000086250000d8250000042600000e26000018260000202600003226000034260000542600005e26000044330000ce520000d068000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 39}
+    m_SelectedIDs: 10260000
+    m_LastClickedID: 9744
+    m_ExpandedIDs: 00000000f42400001c250000202500002c25000090250000bc250000e6250000142600001e26000028260000302600004426000046260000662600007026000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -511,7 +515,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000f02400001825000086250000d8250000042600000e26000018260000202600003226000034260000542600005e26000044330000ce520000d068000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000f42400001c250000202500002c25000090250000bc250000e6250000142600001e26000028260000302600004426000046260000662600007026000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -536,10 +540,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: e2fbffff
-    m_LastClickedInstanceID: -1054
+    m_SelectedInstanceIDs: 06680000
+    m_LastClickedInstanceID: 26630
     m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c62300008e2500002e270000e8240000fc2400004a0affffd07efeff4e2c0000022500003627000034250000a6250000a425000052270000f82d00008a320000f8380000f224000088260000d6240000e2240000fe420000e4240000e02400008a4b0000a44d0000ce3d00002e2e00009cb6feff7477feff4a250000fa3b00002e2500007e520000502500007ce1ffff0a25000012ab00001c25000000000000dce5feff6e260000fa5a0000fe250000dac9ffffb02600003e26000066260000
+    m_ExpandedInstanceIDs: c62300008e2500002e270000e8240000fc2400004a0affffd07efeff4e2c0000022500003627000034250000a6250000a425000052270000f82d00008a320000f8380000f224000088260000d6240000e2240000fe420000e4240000e02400008a4b0000a44d0000ce3d00002e2e00009cb6feff7477feff4a250000fa3b00002e2500007e520000502500007ce1ffff0a25000012ab00001c25000000000000dce5feff6e260000fa5a0000fe250000dac9ffffb02600003e260000662600008c250000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -610,8 +614,8 @@ MonoBehaviour:
     y: 0
     width: 555
     height: 987
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 277, y: 71}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}

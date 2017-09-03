@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace Purchase.UI
 {
@@ -11,7 +12,17 @@ namespace Purchase.UI
         /// All buy stall items.
         /// </summary>
         public GameObject[] BuyStallItems;
-        
+
+        /// <summary>
+        /// All kwekkwek stall upgrade items.
+        /// </summary>
+        public GameObject[] UpgradeKwekkwekStallItems;
+
+        /// <summary>
+        /// The heading text of the purchase UI.
+        /// </summary>
+        public Text HeadingText;
+
         /// <summary>
         /// The selection grid which shows the purchase items.
         /// </summary>
@@ -22,12 +33,11 @@ namespace Purchase.UI
         /// </summary>
         void Start()
         {
-            // TODO Change this when upgrading feature is added.
-            PurchaseInformation.Type = PurchaseType.BuyStall;
-
             switch (PurchaseInformation.Type)
             {
                 case PurchaseType.BuyStall:
+                    HeadingText.text = "Purchase A Stall";
+
                     // Add all buy stall items to the grid.
                     foreach (GameObject buyStallItem in BuyStallItems)
                     {
@@ -35,6 +45,18 @@ namespace Purchase.UI
                     }
 
                     break;
+
+                case PurchaseType.UpgradeKwekkwekStall:
+                    HeadingText.text = "Purchase An Upgrade";
+
+                    // Add all kwekkwek stall u[grades to the grid.
+                    foreach (GameObject upgradeKwekkwekStallItem in UpgradeKwekkwekStallItems)
+                    {
+                        Instantiate(upgradeKwekkwekStallItem, PurchaseSelectionGrid.transform);
+                    }
+
+                    break;
+
                 default:
                     break;
             }

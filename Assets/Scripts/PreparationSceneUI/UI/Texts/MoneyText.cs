@@ -10,14 +10,19 @@ namespace PreparationScene.UI.Texts
     public class MoneyText : MonoBehaviour
     {
         // This money text.
-        public Text CurrentMoneyText;
+        private Text currentMoneyText;
+
+        public GameObject MoneyChangeText;
+        private int PreviousMoney;
         
         /// <summary>
         /// Initialization of the money text.
         /// </summary>
         void Start()
         {
-            CurrentMoneyText = gameObject.GetComponent<Text>();
+            currentMoneyText = gameObject.GetComponent<Text>();
+
+            PreviousMoney = ProgressManager.Money;
 
             ProgressManager.MoneyUpdated += ProgressManager_MoneyUpdated;
             UpdateMoneyText();
@@ -31,7 +36,7 @@ namespace PreparationScene.UI.Texts
         private void ProgressManager_MoneyUpdated(object sender, System.EventArgs e)
         {
             // TODO Find out why the game keeps persisting the previous MoneyTexts even if another scene has been loaded.
-            if (CurrentMoneyText != null)
+            if (currentMoneyText != null)
             {
                 UpdateMoneyText();
             }
@@ -42,7 +47,25 @@ namespace PreparationScene.UI.Texts
         /// </summary>
         public void UpdateMoneyText()
         {
-            CurrentMoneyText.text = ProgressManager.Money.ToString();
+            int change = ProgressManager.Money - PreviousMoney;
+            if (change!=0)
+            {
+                GameObject changeText = Instantiate(MoneyChangeText, transform.parent);
+                changeText.GetComponent<Text>().text = (change > 0 ? "+" : "") + change.ToString();
+
+                if (change > 0)
+                {
+                    changeText.GetComponent<MoneyChangeText>().UseIncreaseColor();
+                }
+                else
+                {
+                    changeText.GetComponent<MoneyChangeText>().UseDecreaseColor();
+                }
+            }
+
+            currentMoneyText.text = ProgressManager.Money.ToString();
+
+            PreviousMoney = ProgressManager.Money;
         }
     }
 }

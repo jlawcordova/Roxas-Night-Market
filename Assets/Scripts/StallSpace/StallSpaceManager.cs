@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Progress;
 
@@ -76,8 +77,12 @@ namespace StallSpace
                         stall = Instantiate(KwekKwekStallPrefab, new Vector3(((stallSpace.StallSpaceNumber - 1) * StallSpaceIntervals), 2, 0), Quaternion.identity);
                         stall.GetComponent<StallSpace>().StallSpaceNumber = stallSpace.StallSpaceNumber;
                         stall.GetComponent<Stall>().StockCount = stallSpace.StockCount;
+                        if (stallSpace.StallUpgrades != null)
+                        {
+                            stall.GetComponent<StallSpace>().StallUpgrades = new List<int>(stallSpace.StallUpgrades);
+                        }
                         #endregion
-                        
+
                         break;
                     default:
                         throw new ArgumentException("Invalid stall space type.");

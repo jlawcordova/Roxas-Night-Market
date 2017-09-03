@@ -21,6 +21,7 @@ namespace PreparationScene.UI.Buttons
 
             // Inform the next scene on what stallspace will be affected by the purchase.
             PurchaseInformation.StallToAffect = selectedStallSpace.StallSpaceNumber;
+            PurchaseInformation.Type = PurchaseType.BuyStall;
             SceneManager.LoadScene("PurchaseScene");
         }
     }

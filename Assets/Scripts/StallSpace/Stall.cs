@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using StallSpace.Upgrades;
 using Progress;
 
 namespace StallSpace
@@ -64,7 +65,14 @@ namespace StallSpace
         /// </summary>
         public int StallProductPurchaseCost;
         #endregion
-   
+
+        #region Stall Upgrade Objects
+        /// <summary>
+        /// All objects that can be added to the stall as upgrades.
+        /// </summary>
+        public GameObject[] StallUpgradeObjects;
+        #endregion
+
         #region Current Stall Values
         /// <summary>
         /// The current amount the stall has spent serving.
@@ -114,6 +122,22 @@ namespace StallSpace
 
             stockCountDisplay = Instantiate(StockCountDisplay, gameObject.transform);
             SetStockCountDisplay(stockCount);
+            
+            // Add all upgrades.
+            if (StallUpgrades != null)
+            {
+                foreach (int stallUpgrade in StallUpgrades)
+                {
+                    if (stallUpgrade < StallUpgradeObjects.Length)
+                    {
+                        if (StallUpgradeObjects[stallUpgrade] != null)
+                        {
+                            Instantiate(StallUpgradeObjects[stallUpgrade], transform);
+                            StallUpgradeObjects[stallUpgrade].GetComponent<Upgrade>().TakeEffect(this);
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace StallSpace
 {
@@ -11,5 +12,6 @@ namespace StallSpace
         public StallSpaceType SpaceType { get; set; }
         public int StallSpaceNumber { get; set; }
         public int StockCount { get; set; }
+        public List<int> StallUpgrades { get; set; }
     }
 }

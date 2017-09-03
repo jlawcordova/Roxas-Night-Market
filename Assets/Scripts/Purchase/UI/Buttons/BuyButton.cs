@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using Progress;
@@ -18,11 +19,23 @@ namespace Purchase.UI.Buttons
         {
             if (ProgressManager.Money - PurchaseItemPanel.SelectedPurchaseItem.ItemCost >= 0)
             {
-                // TODO Stall space type must vary depending on selected purchase.
-                ProgressManager.StallSpaces[PurchaseInformation.StallToAffect].SpaceType = StallSpace.StallSpaceType.Stall;
-                ProgressManager.Money -= PurchaseItemPanel.SelectedPurchaseItem.ItemCost;
+                if (PurchaseInformation.Type == PurchaseType.BuyStall)
+                {
+                    // TODO Stall space type must vary depending on selected purchase.
+                    ProgressManager.StallSpaces[PurchaseInformation.StallToAffect].SpaceType = StallSpace.StallSpaceType.Stall;
+                    ProgressManager.Money -= PurchaseItemPanel.SelectedPurchaseItem.ItemCost;
 
-                SceneManager.LoadScene(1);
+                    SceneManager.LoadScene(1);
+                }
+                else if (PurchaseInformation.Type == PurchaseType.UpgradeKwekkwekStall) 
+                {
+                    // TODO Upgrade must vary depending on selected purchase.
+                    ProgressManager.StallSpaces[PurchaseInformation.StallToAffect].StallUpgrades = new List<int>() { 0 };
+                    ProgressManager.Money -= PurchaseItemPanel.SelectedPurchaseItem.ItemCost;
+
+                    SceneManager.LoadScene(1);
+                }
+                
             }
         }
     }

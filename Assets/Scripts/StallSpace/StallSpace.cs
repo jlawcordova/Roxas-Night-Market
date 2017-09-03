@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace StallSpace
 {
@@ -12,6 +14,7 @@ namespace StallSpace
         /// The stall space type. Always Stall type.
         /// </summary>
         public StallSpaceType SpaceType { get; set; }
+
         /// <summary>
         /// The stall space number of the stall.
         /// </summary>
@@ -21,5 +24,10 @@ namespace StallSpace
         /// The amount of stock on the stall space.
         /// </summary>
         public int StockCount { get; set; }
+
+        /// <summary>
+        /// The upgrades made on the stall space.
+        /// </summary>
+        public List<int> StallUpgrades { get; set; }
     }
 }

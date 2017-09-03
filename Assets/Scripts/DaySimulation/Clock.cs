@@ -120,6 +120,7 @@ namespace DaySimulation
             // End the simulation when the end hour and minute has been reached.
             if (CurrentHour >= EndingHour && CurrentMinute >= EndingMinute)
             {
+                SpeedManager.instance.SetToNormalSpeed();
                 Progress.ProgressManager.SaveProgressToFile();
                 SceneManager.LoadScene(1);
             }

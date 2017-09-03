@@ -55,7 +55,7 @@ namespace Purchase.UI
         {
             // Set the item's texts.
             //transform.GetChild(ItemSpriteIndex).GetComponent<Image>().sprite = ItemIconSprite;
-            transform.GetChild(ItemNameTextIndex).GetComponent<Text>().text = ItemName;
+            //transform.GetChild(ItemNameTextIndex).GetComponent<Text>().text = ItemName;
             transform.GetChild(ItemCostTextIndex).GetComponent<Text>().text = ItemCost.ToString();
         }
 

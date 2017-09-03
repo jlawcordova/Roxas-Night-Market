@@ -60,8 +60,10 @@
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\BuyButton.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\SellButton.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\StartDayButton.cs" />
+     <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\UpgradeStallButton.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\ClickSelectionManager.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Panels\SelectionPanel.cs" />
+     <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Texts\MoneyChangeText.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Texts\MoneyText.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\UIManager.cs" />
      <Compile Include="Assets\Scripts\Progress\ProgressData.cs" />
@@ -82,6 +84,8 @@
      <Compile Include="Assets\Scripts\StallSpace\StallSpaceManager.cs" />
      <Compile Include="Assets\Scripts\StallSpace\StallSpaceType.cs" />
      <Compile Include="Assets\Scripts\StallSpace\StallStockDisplay.cs" />
+     <Compile Include="Assets\Scripts\StallSpace\Upgrades\MusicBoxUpgrade.cs" />
+     <Compile Include="Assets\Scripts\StallSpace\Upgrades\Upgrade.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
