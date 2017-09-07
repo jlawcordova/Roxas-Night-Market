@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using Progress;
+using StallSpace;
 
 namespace Purchase.UI
 {
@@ -17,6 +19,11 @@ namespace Purchase.UI
         /// All kwekkwek stall upgrade items.
         /// </summary>
         public GameObject[] UpgradeKwekkwekStallItems;
+
+        /// <summary>
+        /// All kwekkwek stall upgrade items.
+        /// </summary>
+        public GameObject[] UpgradeIsawStallItems;
 
         /// <summary>
         /// The heading text of the purchase UI.
@@ -46,19 +53,64 @@ namespace Purchase.UI
 
                     break;
 
-                case PurchaseType.UpgradeKwekkwekStall:
+                case PurchaseType.UpgradeStall:
                     HeadingText.text = "Purchase An Upgrade";
 
-                    // Add all kwekkwek stall u[grades to the grid.
-                    foreach (GameObject upgradeKwekkwekStallItem in UpgradeKwekkwekStallItems)
+                    // Place all purchasable items depending on the stall type.
+                    switch (ProgressManager.StallSpaces[PurchaseInformation.StallToAffect].SpaceType)
                     {
-                        Instantiate(upgradeKwekkwekStallItem, PurchaseSelectionGrid.transform);
+                        case StallSpaceType.EmptyStall:
+                            throw new System.ArgumentException("Empty stall space has no upgrades.");
+                        case StallSpaceType.KwekKwekStall:
+                            FillWithUpgrades(UpgradeKwekkwekStallItems);
+
+                            break;
+                        case StallSpaceType.IsawStall:
+                            FillWithUpgrades(UpgradeIsawStallItems);
+
+                            break;
+                        default:
+                            throw new System.ArgumentException("Invalid stall type");
                     }
+                    // Add all kwekkwek stall upgrades to the grid.
+                    
 
                     break;
 
                 default:
                     break;
+            }
+        }
+
+        /// <summary>
+        /// Fills the purchase selection grid with upgrade items.
+        /// </summary>
+        /// <param name="upgradeItems"></param>
+        private void FillWithUpgrades(GameObject[] upgradeItems)
+        {
+            foreach (GameObject upgradeItem in upgradeItems)
+            {
+                int upgradeNumber = upgradeItem.GetComponent<UpgradePurchaseItemPanel>().UpgradeNumber;
+                bool purchased = false;
+
+                // Check if upgrade has already been purchased.
+                if (ProgressManager.StallSpaces[PurchaseInformation.StallToAffect].StallUpgrades != null)
+                {
+                    foreach (int upgrade in ProgressManager.StallSpaces[PurchaseInformation.StallToAffect].StallUpgrades)
+                    {
+                        if (upgrade == upgradeNumber)
+                        {
+                            purchased = true;
+                            break;
+                        }
+                    }
+                }
+
+                // TODO Just disable the item when it has already been purchased.
+                if (!purchased)
+                {
+                    Instantiate(upgradeItem, PurchaseSelectionGrid.transform);
+                }
             }
         }
     }

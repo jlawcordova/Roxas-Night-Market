@@ -17,6 +17,15 @@ namespace PreparationScene.UI.Panels
         /// The final position of the panel.
         /// </summary>
         private Vector3 FinalPanelPosition;
+
+        /// <summary>
+        /// The initial position of the panel on the screen.
+        /// </summary>
+        public float InitialPanelYPosition;
+        /// <summary>
+        /// The final position of the panel.
+        /// </summary>
+        public float FinalPanelYPosition;
         /// <summary>
         /// The speed of the panel animation.
         /// </summary>
@@ -63,14 +72,14 @@ namespace PreparationScene.UI.Panels
         void Start()
         {
             // Set the panel's position to be on the upper middle location.
-            InitialPanelPosition = new Vector3(Screen.width / 2, -transform.GetComponent<RectTransform>().rect.height/2, transform.parent.transform.position.z);
-            FinalPanelPosition = new Vector3(Screen.width / 2, transform.GetComponent<RectTransform>().rect.height/2 +30, transform.parent.transform.position.z);
+            InitialPanelPosition = new Vector3(0, InitialPanelYPosition, 0);
+            FinalPanelPosition = new Vector3(0, FinalPanelYPosition, 0);
 
             // Create a new list for the buttons on the panel.
             ButtonsOnPanel = new List<GameObject>();
 
             // Place the panel hidden from the camera.
-            transform.position = Camera.main.ScreenToWorldPoint(InitialPanelPosition);
+            transform.position = InitialPanelPosition;
         }
 
         /// <summary>
@@ -81,7 +90,7 @@ namespace PreparationScene.UI.Panels
             // If the panel is set to go down, move it down.
             if (goingUp)
             {
-                if (Camera.main.WorldToScreenPoint(transform.position).y < FinalPanelPosition.y)
+                if (transform.position.y < FinalPanelPosition.y)
                 {
                     transform.position += new Vector3(0, PanelSpeed, 0);
                 }
@@ -94,7 +103,7 @@ namespace PreparationScene.UI.Panels
             // If the panel is set to go up, move it up.
             if (goingDown)
             {
-                if (Camera.main.WorldToScreenPoint(transform.position).y >= InitialPanelPosition.y)
+                if (transform.position.y >= InitialPanelPosition.y)
                 {
                     transform.position -= new Vector3(0, PanelSpeed, 0);
                 }
@@ -139,7 +148,7 @@ namespace PreparationScene.UI.Panels
                 case StallSpaceType.EmptyStall:
                     ButtonsOnPanel.Add(Instantiate(BuyStallButton, transform));
                     break;
-                case StallSpaceType.Stall:
+                case StallSpaceType.KwekKwekStall:
                     ButtonsOnPanel.Add(Instantiate(AddStockButton, transform));
                     ButtonsOnPanel.Add(Instantiate(UpgradeStallButton, transform));
                     ButtonsOnPanel.Add(Instantiate(SellStallButton, transform));

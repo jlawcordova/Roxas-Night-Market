@@ -92,7 +92,7 @@ namespace Progress
                 // Create new stall space information.
                 ProgressManager.StallSpaces = new StallSpaceInformation[3];
                 // Create initial money.
-                ProgressManager.Money = 1000;
+                ProgressManager.Money = 10000;
 
                 ProgressManager.StallSpaces[0] = new StallSpaceInformation() { StallSpaceNumber = 0, SpaceType = StallSpaceType.EmptyStall };
                 ProgressManager.StallSpaces[1] = new StallSpaceInformation() { StallSpaceNumber = 1, SpaceType = StallSpaceType.EmptyStall };

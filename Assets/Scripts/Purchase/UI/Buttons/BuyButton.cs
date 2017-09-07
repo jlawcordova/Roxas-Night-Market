@@ -21,16 +21,18 @@ namespace Purchase.UI.Buttons
             {
                 if (PurchaseInformation.Type == PurchaseType.BuyStall)
                 {
-                    // TODO Stall space type must vary depending on selected purchase.
-                    ProgressManager.StallSpaces[PurchaseInformation.StallToAffect].SpaceType = StallSpace.StallSpaceType.Stall;
+                    ProgressManager.StallSpaces[PurchaseInformation.StallToAffect].SpaceType = ((StallPurchaseItemPanel)PurchaseItemPanel.SelectedPurchaseItem).Type;
                     ProgressManager.Money -= PurchaseItemPanel.SelectedPurchaseItem.ItemCost;
 
                     SceneManager.LoadScene(1);
                 }
-                else if (PurchaseInformation.Type == PurchaseType.UpgradeKwekkwekStall) 
+                else if (PurchaseInformation.Type == PurchaseType.UpgradeStall) 
                 {
-                    // TODO Upgrade must vary depending on selected purchase.
-                    ProgressManager.StallSpaces[PurchaseInformation.StallToAffect].StallUpgrades = new List<int>() { 0 };
+                    if (ProgressManager.StallSpaces[PurchaseInformation.StallToAffect].StallUpgrades == null)
+                    {
+                        ProgressManager.StallSpaces[PurchaseInformation.StallToAffect].StallUpgrades = new List<int>();
+                    }
+                    ProgressManager.StallSpaces[PurchaseInformation.StallToAffect].StallUpgrades.Add(((UpgradePurchaseItemPanel)PurchaseItemPanel.SelectedPurchaseItem).UpgradeNumber);
                     ProgressManager.Money -= PurchaseItemPanel.SelectedPurchaseItem.ItemCost;
 
                     SceneManager.LoadScene(1);

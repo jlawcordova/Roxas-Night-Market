@@ -1,7 +1,4 @@
-﻿using System;
-using UnityEngine;
-
-namespace StallSpace.Upgrades
+﻿namespace StallSpace.Upgrades
 {
     public class MusicBoxUpgrade : Upgrade
     {
@@ -11,7 +8,7 @@ namespace StallSpace.Upgrades
         public int AttractionPercentageIncrease;
 
         /// <summary>
-        /// The music box adds 20% attraction percentage.
+        /// The music box adds attraction percentage.
         /// </summary>
         /// <param name="stallToAffect">The stall to be affected by the music box.</param>
         public override void TakeEffect(Stall stallToAffect)
@@ -20,4 +17,3 @@ namespace StallSpace.Upgrades
         }
     }
 }
-

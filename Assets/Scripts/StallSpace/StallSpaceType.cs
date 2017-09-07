@@ -6,6 +6,7 @@
     public enum StallSpaceType
     {
         EmptyStall,
-        Stall
+        KwekKwekStall,
+        IsawStall
     }
 }

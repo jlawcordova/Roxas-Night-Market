@@ -43,7 +43,7 @@ namespace PreparationScene.UI
                 // Check if a stall is clicked.
                 if (!didHitObject)
                 {
-                    didHitObject = CheckRaycastHitToBringDownPanel(ray, StallLayer, StallSpaceType.Stall);
+                    didHitObject = CheckRaycastHitToBringDownPanel(ray, StallLayer, StallSpaceType.KwekKwekStall);
                 }
 
                 // Check if nothing is clicked.

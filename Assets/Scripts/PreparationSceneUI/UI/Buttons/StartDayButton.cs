@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using Audio;
 
 namespace PreparationScene.UI.Buttons
 {
@@ -15,6 +16,7 @@ namespace PreparationScene.UI.Buttons
         /// <param name="eventData">Data on the pointer event.</param>
         public void OnPointerClick(PointerEventData eventData)
         {
+            Music.instance.Destroy();
             SceneManager.LoadScene("DaySimulationScene");
         }
     }

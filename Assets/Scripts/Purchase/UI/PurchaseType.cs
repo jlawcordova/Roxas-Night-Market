@@ -7,6 +7,6 @@
     {
         // Purchase a stall.
         BuyStall,
-        UpgradeKwekkwekStall
+        UpgradeStall
     }
 }

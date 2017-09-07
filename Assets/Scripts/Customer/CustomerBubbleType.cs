@@ -10,6 +10,8 @@
         // Time customer bubble. Appears when the customer is impatient.
         Time,
         // KwekKwek customer bubble. Appears when the customer is buying from a kwekkwek stall.
-        Kwekkwek
+        Kwekkwek,
+        // Isaw customer bubble. Appears when the customer is buying from a isaw stall.
+        Isaw
     }
 }

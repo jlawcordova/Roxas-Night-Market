@@ -10,6 +10,7 @@ namespace StallSpace
         StallSpaceType SpaceType { get; set; }
         int StallSpaceNumber { get; set; }
         int StockCount { get; set; }
+
         List<int> StallUpgrades { get; set; }
     }
 }

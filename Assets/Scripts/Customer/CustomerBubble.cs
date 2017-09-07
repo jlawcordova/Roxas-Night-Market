@@ -22,6 +22,7 @@ namespace Customer
         /// <summary>
         /// The customer to which this customer bubble is attached.
         /// </summary>
+        [HideInInspector]
         public GameObject CustomerUsingTheBubble;
         /// <summary>
         /// The direction of the bubble with respect to the customer.

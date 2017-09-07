@@ -32,6 +32,10 @@ namespace StallSpace
         /// Used to instantiate kwekkwek stalls.
         /// </summary>
         public GameObject KwekKwekStallPrefab;
+        /// <summary>
+        /// Used to instantiate isaw stalls.
+        /// </summary>
+        public GameObject IsawStallPrefab;
         #endregion
 
         /// <summary>
@@ -66,27 +70,50 @@ namespace StallSpace
                 {
                     case StallSpaceType.EmptyStall:
                         #region Create Empty Stall Space
-                        stall = Instantiate(EmptyStallPrefab, new Vector3(((stallSpace.StallSpaceNumber - 1) * StallSpaceIntervals), 0, 0), Quaternion.identity);
+                        stall = Instantiate(EmptyStallPrefab, new Vector3(((stallSpace.StallSpaceNumber - 1) * StallSpaceIntervals), 1.5f, 0), Quaternion.identity);
                         stall.GetComponent<StallSpace>().StallSpaceNumber = stallSpace.StallSpaceNumber;
 
                         break;
                         #endregion
 
-                    case StallSpaceType.Stall:
-                        #region Create Stall
+                    case StallSpaceType.KwekKwekStall:
+                        #region Create KwekKwek Stall
                         stall = Instantiate(KwekKwekStallPrefab, new Vector3(((stallSpace.StallSpaceNumber - 1) * StallSpaceIntervals), 2, 0), Quaternion.identity);
-                        stall.GetComponent<StallSpace>().StallSpaceNumber = stallSpace.StallSpaceNumber;
-                        stall.GetComponent<Stall>().StockCount = stallSpace.StockCount;
-                        if (stallSpace.StallUpgrades != null)
-                        {
-                            stall.GetComponent<StallSpace>().StallUpgrades = new List<int>(stallSpace.StallUpgrades);
-                        }
+
+                        // Set the stall values.
+                        SetStallValues(stall, stallSpace);
+                        #endregion
+
+                        break;
+                    case StallSpaceType.IsawStall:
+                        #region Create IsawStall Stall
+                        stall = Instantiate(IsawStallPrefab, new Vector3(((stallSpace.StallSpaceNumber - 1) * StallSpaceIntervals), 2, 0), Quaternion.identity);
+
+                        // Set the stall values.
+                        SetStallValues(stall, stallSpace);
                         #endregion
 
                         break;
                     default:
                         throw new ArgumentException("Invalid stall space type.");
                 }
+            }
+        }
+
+
+        /// <summary>
+        /// Sets the values of a stall based on the stall space information.
+        /// </summary>
+        /// <param name="stall">The stall gameobject.</param>
+        /// <param name="stallSpace">The stall space information.</param>
+        void SetStallValues(GameObject stall, StallSpaceInformation stallSpace)
+        {
+            stall.GetComponent<StallSpace>().SpaceType = stallSpace.SpaceType;
+            stall.GetComponent<StallSpace>().StallSpaceNumber = stallSpace.StallSpaceNumber;
+            stall.GetComponent<Stall>().StockCount = stallSpace.StockCount;
+            if (stallSpace.StallUpgrades != null)
+            {
+                stall.GetComponent<StallSpace>().StallUpgrades = new List<int>(stallSpace.StallUpgrades);
             }
         }
     }

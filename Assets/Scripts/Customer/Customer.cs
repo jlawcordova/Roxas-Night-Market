@@ -105,28 +105,21 @@ namespace Customer
         /// The customer bubble object for buying kwekkwek.
         /// </summary>
         public GameObject CustomerKwekKwekBubble;
+
         /// <summary>
-        /// The direction of the the customer kwekkwek bubble.
+        /// The customer bubble object for buying isaw.
         /// </summary>
-        public Vector3 CustomerKwekKwekBubbleDirection = Vector3.left;
+        public GameObject CustomeIsawBubble;
 
         /// <summary>
         /// The customer bubble object for showing impatience.
         /// </summary>
         public GameObject CustomerTimeBubble;
-        /// <summary>
-        /// The direction of the the customer time bubble.
-        /// </summary>
-        public Vector3 CustomerTimeBubbleDirection = Vector3.left;
 
         /// <summary>
         /// The customer bubbleobject for showing that the customer has bought from the stall and is happy.
         /// </summary>
         public GameObject CustomerHappyBubble;
-        /// <summary>
-        /// The direction of the the customer happy bubble.
-        /// </summary>
-        public Vector3 CustomerHappyBubbleDirection = Vector3.right;
         #endregion
 
         /// <summary>
@@ -239,11 +232,25 @@ namespace Customer
                             {
                                 // Reset customer's patience.
                                 currentCustomerPatience = CustomerPatience;
-                                // TODO Generate different bubble depending on stall type.
+
                                 // When stall is reached, set the customer to buy from the stall.
                                 customerStatus = CustomerState.BuyingFromStall;
                                 animator.SetTrigger("IsIdle");
-                                GenerateBubble(CustomerBubbleType.Kwekkwek); 
+
+                                // Generate different bubble depending on stall type.
+                                switch (currentStall.SpaceType)
+                                {
+                                    case StallSpaceType.EmptyStall:
+                                        break;
+                                    case StallSpaceType.KwekKwekStall:
+                                        GenerateBubble(CustomerBubbleType.Kwekkwek);
+                                        break;
+                                    case StallSpaceType.IsawStall:
+                                        GenerateBubble(CustomerBubbleType.Isaw);
+                                        break;
+                                    default:
+                                        break;
+                                }
                             }
                         }
                         else
@@ -509,20 +516,22 @@ namespace Customer
                 case CustomerBubbleType.Happy:
                     // Set the bubbles customer to this game object as well as the direction.
                     CustomerHappyBubble.GetComponent<CustomerBubble>().CustomerUsingTheBubble = gameObject;
-                    CustomerHappyBubble.GetComponent<CustomerBubble>().BubbleDirection = CustomerHappyBubbleDirection;
-                    Instantiate(CustomerHappyBubble, transform.position + new Vector3(CustomerBubbleOffset.x * CustomerHappyBubbleDirection.x, CustomerBubbleOffset.y, CustomerBubbleOffset.z), Quaternion.identity);
+                    Instantiate(CustomerHappyBubble, transform.position + new Vector3(CustomerBubbleOffset.x * CustomerHappyBubble.GetComponent<CustomerBubble>().BubbleDirection.x, CustomerBubbleOffset.y, CustomerBubbleOffset.z), Quaternion.identity);
                     break;
                 case CustomerBubbleType.Time:
                     // Set the bubbles customer to this game object as well as the direction.
                     CustomerTimeBubble.GetComponent<CustomerBubble>().CustomerUsingTheBubble = gameObject;
-                    CustomerTimeBubble.GetComponent<CustomerBubble>().BubbleDirection = CustomerTimeBubbleDirection;
-                    Instantiate(CustomerTimeBubble, transform.position + new Vector3(CustomerBubbleOffset.x * CustomerTimeBubbleDirection.x, CustomerBubbleOffset.y, CustomerBubbleOffset.z), Quaternion.identity);
+                    Instantiate(CustomerTimeBubble, transform.position + new Vector3(CustomerBubbleOffset.x * CustomerTimeBubble.GetComponent<CustomerBubble>().BubbleDirection.x, CustomerBubbleOffset.y, CustomerBubbleOffset.z), Quaternion.identity);
                     break;
                 case CustomerBubbleType.Kwekkwek:
                     // Set the bubbles customer to this game object as well as the direction.
                     CustomerKwekKwekBubble.GetComponent<CustomerBubble>().CustomerUsingTheBubble = gameObject;
-                    CustomerKwekKwekBubble.GetComponent<CustomerBubble>().BubbleDirection = CustomerKwekKwekBubbleDirection;
-                    Instantiate(CustomerKwekKwekBubble, transform.position + new Vector3(CustomerBubbleOffset.x * CustomerKwekKwekBubbleDirection.x, CustomerBubbleOffset.y, CustomerBubbleOffset.z), Quaternion.identity);
+                    Instantiate(CustomerKwekKwekBubble, transform.position + new Vector3(CustomerBubbleOffset.x * CustomerKwekKwekBubble.GetComponent<CustomerBubble>().BubbleDirection.x, CustomerBubbleOffset.y, CustomerBubbleOffset.z), Quaternion.identity);
+                    break;
+                case CustomerBubbleType.Isaw:
+                    // Set the bubbles customer to this game object as well as the direction.
+                    CustomeIsawBubble.GetComponent<CustomerBubble>().CustomerUsingTheBubble = gameObject;
+                    Instantiate(CustomeIsawBubble, transform.position + new Vector3(CustomerBubbleOffset.x * CustomeIsawBubble.GetComponent<CustomerBubble>().BubbleDirection.x, CustomerBubbleOffset.y, CustomerBubbleOffset.z), Quaternion.identity);
                     break;
                 default:
                     break;

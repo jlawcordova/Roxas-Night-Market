@@ -46,14 +46,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Audio\Music.cs" />
      <Compile Include="Assets\Scripts\Customer\Customer.cs" />
      <Compile Include="Assets\Scripts\Customer\CustomerBubble.cs" />
      <Compile Include="Assets\Scripts\Customer\CustomerBubbleType.cs" />
      <Compile Include="Assets\Scripts\Customer\CustomerGenerator.cs" />
      <Compile Include="Assets\Scripts\Customer\CustomerState.cs" />
+     <Compile Include="Assets\Scripts\DaySimulation\Background.cs" />
      <Compile Include="Assets\Scripts\DaySimulation\Clock.cs" />
      <Compile Include="Assets\Scripts\DaySimulation\SpeedManager.cs" />
      <Compile Include="Assets\Scripts\DaySimulation\UI\Buttons\SpeedButton.cs" />
+     <Compile Include="Assets\Scripts\DaySimulation\UI\ClockIcon.cs" />
      <Compile Include="Assets\Scripts\DaySimulation\UI\UIManager.cs" />
      <Compile Include="Assets\Scripts\Loader.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\AddStockButton.cs" />
@@ -73,6 +76,8 @@
      <Compile Include="Assets\Scripts\Purchase\UI\Buttons\BuyButton.cs" />
      <Compile Include="Assets\Scripts\Purchase\UI\Panels\PurchaseDetailsPanel.cs" />
      <Compile Include="Assets\Scripts\Purchase\UI\Panels\PurchaseItemPanel.cs" />
+     <Compile Include="Assets\Scripts\Purchase\UI\Panels\StallPurchaseItemPanel.cs" />
+     <Compile Include="Assets\Scripts\Purchase\UI\Panels\UpgradePurchaseItemPanel.cs" />
      <Compile Include="Assets\Scripts\Purchase\UI\PurchaseInformation.cs" />
      <Compile Include="Assets\Scripts\Purchase\UI\PurchaseLoader.cs" />
      <Compile Include="Assets\Scripts\Purchase\UI\PurchaseType.cs" />
@@ -84,8 +89,12 @@
      <Compile Include="Assets\Scripts\StallSpace\StallSpaceManager.cs" />
      <Compile Include="Assets\Scripts\StallSpace\StallSpaceType.cs" />
      <Compile Include="Assets\Scripts\StallSpace\StallStockDisplay.cs" />
+     <Compile Include="Assets\Scripts\StallSpace\Upgrades\IsawGrill.cs" />
+     <Compile Include="Assets\Scripts\StallSpace\Upgrades\KwekKwekBowl.cs" />
      <Compile Include="Assets\Scripts\StallSpace\Upgrades\MusicBoxUpgrade.cs" />
      <Compile Include="Assets\Scripts\StallSpace\Upgrades\Upgrade.cs" />
+     <Compile Include="Assets\Scripts\StallSpace\Upgrades\UpgradeData.cs" />
+     <Compile Include="Assets\Scripts\StallSpace\Upgrades\UpgradeSlot.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
