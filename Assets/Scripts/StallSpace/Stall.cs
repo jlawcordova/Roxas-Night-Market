@@ -61,7 +61,7 @@ namespace StallSpace
         /// </summary>
         public int StallRestockCost;
         /// <summary>
-        /// The The amount of money earned by the stall per customer purchase.
+        /// The amount of money earned by the stall per customer purchase.
         /// </summary>
         public int StallProductPurchaseCost;
         #endregion
@@ -115,6 +115,8 @@ namespace StallSpace
         /// </summary>
         void Start()
         {
+            transform.SetAsLastSibling();
+
             // Set the stock count display.
             StockCountDisplay.transform.position = new Vector3(transform.GetComponent<RectTransform>().rect.size.x / 2 + StockCountDisplayXOffset, 
                 transform.GetComponent<RectTransform>().rect.size.y / 2 + StockCountDisplayyOffset, 
@@ -126,14 +128,14 @@ namespace StallSpace
             // Add all upgrades.
             if (StallUpgrades != null)
             {
-                foreach (int stallUpgrade in StallUpgrades)
+                foreach (UpgradeData stallUpgrade in StallUpgrades)
                 {
-                    if (stallUpgrade < StallUpgradeObjects.Length)
+                    if (stallUpgrade.UpgradeNumber < StallUpgradeObjects.Length)
                     {
-                        if (StallUpgradeObjects[stallUpgrade] != null)
+                        if (StallUpgradeObjects[stallUpgrade.UpgradeNumber] != null)
                         {
-                            Instantiate(StallUpgradeObjects[stallUpgrade], transform);
-                            StallUpgradeObjects[stallUpgrade].GetComponent<Upgrade>().TakeEffect(this);
+                            Instantiate(StallUpgradeObjects[stallUpgrade.UpgradeNumber], transform);
+                            StallUpgradeObjects[stallUpgrade.UpgradeNumber].GetComponent<Upgrade>().TakeEffect(this);
                         }
                     }
                 }
@@ -158,6 +160,9 @@ namespace StallSpace
         public void Buy(int amount)
         {
             StockCount--;
+
+            // Update the profit tracker.
+            ProfitTracker.instance.StallProfit[this.StallSpaceNumber] += StallProductPurchaseCost;
 
             // Update progress.
             ProgressManager.StallSpaces[StallSpaceNumber].StockCount = StockCount;

@@ -21,6 +21,7 @@ namespace PreparationScene.UI
         /// </summary>
         [HideInInspector]
         public GameObject SelectedStallSpace = null;
+        public GameObject LastSelectedStallSpace;
         [HideInInspector]
         public StallSpaceType SelectedStallSpaceType;
 

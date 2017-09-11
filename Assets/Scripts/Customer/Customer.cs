@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using StallSpace;
+using Audio;
 
 namespace Customer
 {
@@ -122,11 +123,20 @@ namespace Customer
         public GameObject CustomerHappyBubble;
         #endregion
 
+        #region Customer Sounds
+        public AudioClip BuyingSound;
+        public AudioClip BoughtSound;
+        public AudioClip ImpatientSound;
+
+        private AudioSource soundSource;
+        #endregion
+
         /// <summary>
         /// Initialization of the customer.
         /// </summary>
         void Start()
         {
+            soundSource = gameObject.GetComponent<AudioSource>();
             animator = gameObject.GetComponent<Animator>();
             // Set the boxcollider.
             boxCollider = GetComponent<BoxCollider2D>();
@@ -138,6 +148,13 @@ namespace Customer
 
             // Set the customer's patience.
             currentCustomerPatience = CustomerPatience;
+        }
+
+        void PlaySound(AudioClip clip)
+        {
+            soundSource.clip = clip;
+
+            soundSource.Play();
         }
 
         /// <summary>
@@ -237,6 +254,9 @@ namespace Customer
                                 customerStatus = CustomerState.BuyingFromStall;
                                 animator.SetTrigger("IsIdle");
 
+                                // Play buying sound.
+                                PlaySound(BuyingSound);
+
                                 // Generate different bubble depending on stall type.
                                 switch (currentStall.SpaceType)
                                 {
@@ -284,6 +304,8 @@ namespace Customer
                         // If customer lost all patience, make customer leave.
                         if (currentCustomerPatience <= 0)
                         {
+                            PlaySound(ImpatientSound);
+                            
                             GenerateBubble(CustomerBubbleType.Time);
                             customerStatus = CustomerState.WalkingAwayFromStall;
                             animator.SetTrigger("IsWalkingDown");
@@ -305,6 +327,8 @@ namespace Customer
                         // If customer lost all patience, make customer leave.
                         if (currentCustomerPatience <= 0)
                         {
+                            PlaySound(ImpatientSound);
+
                             GenerateBubble(CustomerBubbleType.Time);
                             customerStatus = CustomerState.WalkingAwayFromStall;
                             animator.SetTrigger("IsWalkingDown");
@@ -319,6 +343,7 @@ namespace Customer
                         // Check if stall has already finished serving.
                         if (currentStall.CurrentServeTime >= currentStall.ServingTime)
                         {
+                            PlaySound(BoughtSound);
                             GenerateBubble(CustomerBubbleType.Happy);
                             customerStatus = CustomerState.BoughtFromStall;
                             animator.SetTrigger("IsWalking");

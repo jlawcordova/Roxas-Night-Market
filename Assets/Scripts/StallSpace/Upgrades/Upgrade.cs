@@ -18,6 +18,9 @@ namespace StallSpace.Upgrades
         /// <param name="stallToAffect">The stall that will be affected by the upgrade.</param>
         public abstract void TakeEffect(Stall stallToAffect);
 
+        /// <summary>
+        /// Initialization of the upgrade object.
+        /// </summary>
         void Start()
         {
             transform.position = transform.parent.position + Offset;

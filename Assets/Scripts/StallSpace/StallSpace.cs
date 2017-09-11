@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using StallSpace.Upgrades;
 
 namespace StallSpace
 {
@@ -28,6 +28,6 @@ namespace StallSpace
         /// <summary>
         /// The upgrades made on the stall space.
         /// </summary>
-        public List<int> StallUpgrades { get; set; }
+        public List<UpgradeData> StallUpgrades { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using Progress;
 
 namespace DaySimulation
 {
@@ -14,6 +14,16 @@ namespace DaySimulation
         /// </summary>
         [HideInInspector]
         public static Clock instance;
+
+        /// <summary>
+        /// The panel to be displayed when the day has ended.
+        /// </summary>
+        public GameObject EndDay;
+
+        /// <summary>
+        /// The button to be hidden when the day has ended.
+        /// </summary>
+        public GameObject SpeedButton;
 
         #region Clock Properties
         /// <summary>
@@ -120,9 +130,14 @@ namespace DaySimulation
             // End the simulation when the end hour and minute has been reached.
             if (CurrentHour >= EndingHour && CurrentMinute >= EndingMinute)
             {
-                SpeedManager.instance.SetToNormalSpeed();
-                Progress.ProgressManager.SaveProgressToFile();
-                SceneManager.LoadScene(1);
+                SpeedManager.instance.Pause();
+                ProgressManager.SaveProgressToFile();
+
+                // Display the end day panel.
+                EndDay.SetActive(true);
+
+                // Hide the speed button.
+                SpeedButton.SetActive(false);
             }
             
             deltaTimeElapsed++;

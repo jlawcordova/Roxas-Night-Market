@@ -9,6 +9,8 @@ namespace PreparationScene.UI
     /// </summary>
     public class ClickSelectionManager : MonoBehaviour
     {
+        [HideInInspector]
+        public static ClickSelectionManager instance;
 
         /// <summary>
         /// The layer mask of the empty stall.
@@ -23,6 +25,11 @@ namespace PreparationScene.UI
         /// Temporary variable used to store the hit object by the mouse click raycast.
         /// </summary>
         private RaycastHit2D selectedHit;
+
+        void Start()
+        {
+            instance = this;
+        }
 
         // Update is called once per frame
         void Update()
@@ -76,6 +83,7 @@ namespace PreparationScene.UI
                 if (UIManager.instance.SelectedStallSpace == null)
                 {
                     UIManager.instance.SelectedStallSpace = selectedHit.transform.gameObject;
+                    UIManager.instance.LastSelectedStallSpace = selectedHit.transform.gameObject;
                     UIManager.instance.SelectedStallSpaceType = stallSpaceType;
                     UIManager.instance.DisplayedSelectionPanel.GetComponent<SelectionPanel>().GoUp();
                 }
@@ -83,6 +91,7 @@ namespace PreparationScene.UI
                 else if (selectedHit.transform.gameObject != UIManager.instance.SelectedStallSpace)
                 {
                     UIManager.instance.SelectedStallSpace = selectedHit.transform.gameObject;
+                    UIManager.instance.LastSelectedStallSpace = selectedHit.transform.gameObject;
                     UIManager.instance.SelectedStallSpaceType = stallSpaceType;
                     UIManager.instance.DisplayedSelectionPanel.GetComponent<SelectionPanel>().Reset();
                 }

@@ -23,6 +23,9 @@ namespace PreparationScene.UI.Buttons
             // Allow to restock if the player has enough money and if the stall's stock is already not at max.
             if ((ProgressManager.Money - selectedStall.StallRestockCost >= 0) && (selectedStall.StockCount + StockIncreaseAmount <= selectedStall.MaxStockCount))
             {
+                // Update the profit tracker.
+                ProfitTracker.instance.StallProfit[selectedStall.StallSpaceNumber] -= selectedStall.StallRestockCost;
+
                 // Decrease the player's money by the cost of restocking.
                 ProgressManager.Money -= selectedStall.StallRestockCost;
                 // Increase the stall's stock.

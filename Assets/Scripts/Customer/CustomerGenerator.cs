@@ -10,9 +10,9 @@ namespace Customer
     {
         #region Generator Properties
         /// <summary>
-        /// The customer object that will be generated.
+        /// The customers object that will be generated.
         /// </summary>
-        public GameObject Customer;
+        public GameObject[] Customers;
         /// <summary>
         /// The X position of the customer when instantiated on the left.
         /// </summary>
@@ -84,25 +84,27 @@ namespace Customer
                     // Generate a customer when the chance is hit.
                     if (Random.Range(0, 100) < GeneratingChance)
                     {
+                        int customerNumber = Random.Range(0, 2);
+
                         // 50/50 chance to place the customer either on the left or right.
                         if (Random.Range(0, 2) == 0)
                         {
-                            Customer.GetComponent<Customer>().IsGoingRight = true;
-                            Customer.GetComponent<Customer>().EndPoint = CustomerRightEndPosition;
+                            Customers[customerNumber].GetComponent<Customer>().IsGoingRight = true;
+                            Customers[customerNumber].GetComponent<Customer>().EndPoint = CustomerRightEndPosition;
                         }
                         else
                         {
-                            Customer.GetComponent<Customer>().IsGoingRight = false;
-                            Customer.GetComponent<Customer>().EndPoint = CustomerLeftEndPosition;
+                            Customers[customerNumber].GetComponent<Customer>().IsGoingRight = false;
+                            Customers[customerNumber].GetComponent<Customer>().EndPoint = CustomerLeftEndPosition;
                         }
 
                         // Instantiate the customer to its proper position.
                         Vector3 customerPosition = new Vector3(
-                            Customer.GetComponent<Customer>().IsGoingRight ? CustomerLeftInstatiationPosition : CustomerRightInstatiationPosition,
+                            Customers[customerNumber].GetComponent<Customer>().IsGoingRight ? CustomerLeftInstatiationPosition : CustomerRightInstatiationPosition,
                             CustomerYInstantiation[Random.Range(0, CustomerYInstantiation.Length)], 
                             0);
                         
-                        Instantiate(Customer, customerPosition, Quaternion.identity);
+                        Instantiate(Customers[customerNumber], customerPosition, Quaternion.identity);
                     }
                     
                     // Reset instantiation timer after instantiating a customer.

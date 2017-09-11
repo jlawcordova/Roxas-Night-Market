@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using StallSpace.Upgrades;
 
 namespace StallSpace
 {
@@ -13,6 +14,6 @@ namespace StallSpace
         public int StallSpaceNumber { get; set; }
         public int StockCount { get; set; }
 
-        public List<int> StallUpgrades { get; set; }
+        public List<UpgradeData> StallUpgrades { get; set; }
     }
 }

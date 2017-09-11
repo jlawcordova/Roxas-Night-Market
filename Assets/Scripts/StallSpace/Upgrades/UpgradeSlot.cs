@@ -5,7 +5,9 @@
     /// </summary>
     public enum UpgradeSlot
     {
+        BackRight,
         FrontRight,
-        TableLeft
+        TableLeft,
+        TableRight
     }
 }

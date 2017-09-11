@@ -11,10 +11,10 @@ namespace Purchase.UI
         /// <summary>
         /// Index of various children on this panel.
         /// </summary>
-        private const int ItemNameTextIndex = 0;
-        private const int ItemImageIndex = 1;
-        private const int ItemDetailTextIndex = 2;
-        private const int BuyButtonIndex = 3;
+        private const int ItemNameTextIndex = 1;
+        private const int ItemImageIndex = 2;
+        private const int ItemDetailTextIndex = 3;
+        private const int BuyButtonIndex = 4;
 
         /// <summary>
         /// Initialization of the purchase details panel.

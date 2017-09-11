@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
-using Progress;
-using StallSpace;
+using PreparationScene.UI.Panels;
 
 namespace PreparationScene.UI.Buttons
 {
@@ -17,13 +15,8 @@ namespace PreparationScene.UI.Buttons
         /// <param name="eventData">Data on the pointer click event.</param>
         public void OnPointerClick(PointerEventData eventData)
         {
-            int selectedStallSpaceNumber = UIManager.instance.SelectedStallSpace.GetComponent<Stall>().StallSpaceNumber;
-
-            // Set the stall to be empty.
-            ProgressManager.StallSpaces[selectedStallSpaceNumber] = new StallSpaceInformation() { StallSpaceNumber = selectedStallSpaceNumber, SpaceType = StallSpaceType.EmptyStall };
-
-            // Reload the scene.
-            SceneManager.LoadScene("PreparationScene");
+            ClickSelectionManager.instance.gameObject.SetActive(false);
+            SellConfirmationPanel.instance.gameObject.SetActive(true);
         }
     }
 }

@@ -19,11 +19,32 @@ namespace Audio
             }
 
             DontDestroyOnLoad(gameObject);
+
+            ToggleVolume(PlayerPrefs.GetInt("MusicVolume") == 1 ? true : false);
         }
 
         public void Destroy()
         {
             Destroy(gameObject);
+        }
+
+        public void ToggleVolume(bool on)
+        {
+            PlayerPrefs.SetInt("MusicVolume", on ? 1 : 0);
+
+            ToggleVolumeNoSave(on);
+        }
+
+        public void ToggleVolumeNoSave(bool on)
+        {
+            if (!on)
+            {
+                Music.instance.gameObject.GetComponent<AudioSource>().volume = 0;
+            }
+            else
+            {
+                Music.instance.gameObject.GetComponent<AudioSource>().volume = 1;
+            }
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Progress;
+using StallSpace.Upgrades;
 
 namespace StallSpace
 {
@@ -113,7 +114,7 @@ namespace StallSpace
             stall.GetComponent<Stall>().StockCount = stallSpace.StockCount;
             if (stallSpace.StallUpgrades != null)
             {
-                stall.GetComponent<StallSpace>().StallUpgrades = new List<int>(stallSpace.StallUpgrades);
+                stall.GetComponent<StallSpace>().StallUpgrades = new List<UpgradeData>(stallSpace.StallUpgrades);
             }
         }
     }

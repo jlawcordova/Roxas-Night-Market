@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using Progress;
 using StallSpace;
+using StallSpace.Upgrades;
 
 namespace Purchase.UI
 {
@@ -96,9 +97,9 @@ namespace Purchase.UI
                 // Check if upgrade has already been purchased.
                 if (ProgressManager.StallSpaces[PurchaseInformation.StallToAffect].StallUpgrades != null)
                 {
-                    foreach (int upgrade in ProgressManager.StallSpaces[PurchaseInformation.StallToAffect].StallUpgrades)
+                    foreach (UpgradeData upgrade in ProgressManager.StallSpaces[PurchaseInformation.StallToAffect].StallUpgrades)
                     {
-                        if (upgrade == upgradeNumber)
+                        if (upgrade.UpgradeNumber == upgradeNumber)
                         {
                             purchased = true;
                             break;

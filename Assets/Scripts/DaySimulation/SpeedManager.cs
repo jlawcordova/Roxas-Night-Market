@@ -44,4 +44,12 @@ public class SpeedManager : MonoBehaviour {
     {
         Time.timeScale = 1;
     }
+
+    /// <summary>
+    /// Pauses simulation's speed.
+    /// </summary>
+    public void Pause()
+    {
+        Time.timeScale = 0;
+    }
 }

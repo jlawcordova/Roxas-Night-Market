@@ -7,12 +7,9 @@ namespace Progress
     /// </summary>
     public class ProgressGetter : MonoBehaviour
     {
-
         // Performed when the progress getter is enabled.
         void Awake()
         {
-            ProgressManager.DeleteSaveFile();
-
             ProgressManager.GetProgressFromFile();
         }
     }
