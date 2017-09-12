@@ -54,11 +54,17 @@ namespace PreparationScene.UI
                 }
 
                 // Check if nothing is clicked.
-                // If the click is below the panel with nothing hit, make the panel go up.
+                // If the click is below the panel with nothing hit, make the panel go down.
                 if (!didHitObject &&
                     Input.mousePosition.y > (Camera.main.WorldToScreenPoint(UIManager.instance.DisplayedSelectionPanel.transform.position) 
                     + new Vector3(0, UIManager.instance.DisplayedSelectionPanel.GetComponent<RectTransform>().rect.height / 2, 0)).y)
                 {
+                    // Remove the previous highlight.
+                    if (UIManager.instance.SelectedStallSpace != null)
+                    {
+                        UIManager.instance.SelectedStallSpace.GetComponent<IHighlightable>().RemoveHighlight();
+                    }
+
                     UIManager.instance.SelectedStallSpace = null;
                     UIManager.instance.DisplayedSelectionPanel.GetComponent<SelectionPanel>().GoDown();
                 }
@@ -79,20 +85,31 @@ namespace PreparationScene.UI
             if (selectedHit)
             {
                 // Check if an object has already been selected.
-                // If no object has been selected yet, just bring down the panel.
+                // If no object has been selected yet, just bring the panel up.
                 if (UIManager.instance.SelectedStallSpace == null)
                 {
+                    // Set the selected stall space.
                     UIManager.instance.SelectedStallSpace = selectedHit.transform.gameObject;
+                    UIManager.instance.SelectedStallSpace.GetComponent<IHighlightable>().Highlight();
                     UIManager.instance.LastSelectedStallSpace = selectedHit.transform.gameObject;
                     UIManager.instance.SelectedStallSpaceType = stallSpaceType;
+
+                    // Make the panel go up.
                     UIManager.instance.DisplayedSelectionPanel.GetComponent<SelectionPanel>().GoUp();
                 }
                 // Reset the panel if a new object has been selected.
                 else if (selectedHit.transform.gameObject != UIManager.instance.SelectedStallSpace)
                 {
+                    // Remove the previous highlight.
+                    UIManager.instance.SelectedStallSpace.GetComponent<IHighlightable>().RemoveHighlight();
+
+                    // Set the selected stall space.
                     UIManager.instance.SelectedStallSpace = selectedHit.transform.gameObject;
+                    UIManager.instance.SelectedStallSpace.GetComponent<IHighlightable>().Highlight();
                     UIManager.instance.LastSelectedStallSpace = selectedHit.transform.gameObject;
                     UIManager.instance.SelectedStallSpaceType = stallSpaceType;
+
+                    // Make the panel reset.
                     UIManager.instance.DisplayedSelectionPanel.GetComponent<SelectionPanel>().Reset();
                 }
 

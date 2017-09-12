@@ -7,7 +7,7 @@ namespace StallSpace
     /// <summary>
     /// Represents a stall which sells products to customers.
     /// </summary>
-    public class Stall : StallSpace
+    public class Stall : StallSpace, IHighlightable
     {
         #region Stall Properties
         /// <summary>
@@ -64,6 +64,14 @@ namespace StallSpace
         /// The amount of money earned by the stall per customer purchase.
         /// </summary>
         public int StallProductPurchaseCost;
+        
+        [SerializeField]
+        private Color highlightColor;
+        public Color HighlightColor { get; set; }
+
+        [SerializeField]
+        private Color removeHighlightColor;
+        public Color RemoveHighlightColor { get; set; }
         #endregion
 
         #region Stall Upgrade Objects
@@ -202,6 +210,32 @@ namespace StallSpace
         public void ResetServeTime()
         {
             currentServeTime = 0;
+        }
+
+        public void Highlight()
+        {
+            gameObject.GetComponent<Renderer>().material.color = highlightColor;
+
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                if (transform.GetChild(i).GetComponent<Renderer>() != null)
+                {
+                    transform.GetChild(i).GetComponent<Renderer>().material.color = highlightColor;
+                }
+            }
+        }
+
+        public void RemoveHighlight()
+        {
+            gameObject.GetComponent<Renderer>().material.color = removeHighlightColor;
+
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                if (transform.GetChild(i).GetComponent<Renderer>() != null)
+                {
+                    transform.GetChild(i).GetComponent<Renderer>().material.color = removeHighlightColor;
+                }
+            }
         }
     }
 }

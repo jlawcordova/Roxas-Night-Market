@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using DaySimulation;
+using Progress;
 
 namespace Customer
 {
@@ -90,7 +91,7 @@ namespace Customer
                         if (Random.Range(0, 2) == 0)
                         {
                             Customers[customerNumber].GetComponent<Customer>().IsGoingRight = true;
-                            Customers[customerNumber].GetComponent<Customer>().EndPoint = CustomerRightEndPosition;
+                            Customers[customerNumber].GetComponent<Customer>().EndPoint = CustomerRightEndPosition * (ProgressManager.PlaceSize + 1);
                         }
                         else
                         {
@@ -100,7 +101,7 @@ namespace Customer
 
                         // Instantiate the customer to its proper position.
                         Vector3 customerPosition = new Vector3(
-                            Customers[customerNumber].GetComponent<Customer>().IsGoingRight ? CustomerLeftInstatiationPosition : CustomerRightInstatiationPosition,
+                            Customers[customerNumber].GetComponent<Customer>().IsGoingRight ? CustomerLeftInstatiationPosition : CustomerRightInstatiationPosition * (ProgressManager.PlaceSize + 1),
                             CustomerYInstantiation[Random.Range(0, CustomerYInstantiation.Length)], 
                             0);
                         

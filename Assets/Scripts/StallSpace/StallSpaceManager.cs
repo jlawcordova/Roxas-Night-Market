@@ -63,6 +63,10 @@ namespace StallSpace
             // Create the stalls based on the progress.
             foreach (StallSpaceInformation stallSpace in ProgressManager.StallSpaces)
             {
+                if (stallSpace == null)
+                {
+                    continue;
+                }
                 // Temporary gameobject variable.
                 GameObject stall;
 

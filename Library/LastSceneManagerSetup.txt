@@ -2,15 +2,18 @@ sceneSetups:
 - path: Assets/Scenes/LogoScene.unity
   isLoaded: 1
   isActive: 1
+- path: Assets/Scenes/UnlockedScene.unity
+  isLoaded: 0
+  isActive: 0
 - path: Assets/Scenes/MainScreenScene.unity
   isLoaded: 0
   isActive: 0
 - path: Assets/Scenes/PreparationScene.unity
   isLoaded: 0
   isActive: 0
-- path: Assets/Scenes/DaySimulationScene.unity
+- path: Assets/Scenes/PurchaseScene.unity
   isLoaded: 0
   isActive: 0
-- path: Assets/Scenes/PurchaseScene.unity
+- path: Assets/Scenes/DaySimulationScene.unity
   isLoaded: 0
   isActive: 0

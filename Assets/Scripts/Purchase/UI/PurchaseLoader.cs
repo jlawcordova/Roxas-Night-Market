@@ -62,6 +62,7 @@ namespace Purchase.UI
                     {
                         case StallSpaceType.EmptyStall:
                             throw new System.ArgumentException("Empty stall space has no upgrades.");
+
                         case StallSpaceType.KwekKwekStall:
                             FillWithUpgrades(UpgradeKwekkwekStallItems);
 
@@ -106,11 +107,21 @@ namespace Purchase.UI
                         }
                     }
                 }
+                
+                // Place the upgrade item in the selection grid.
+                GameObject item = Instantiate(upgradeItem, PurchaseSelectionGrid.transform);
 
-                // TODO Just disable the item when it has already been purchased.
                 if (!purchased)
                 {
-                    Instantiate(upgradeItem, PurchaseSelectionGrid.transform);
+                    // Disable the filter panel and set the item to be not purchased.
+                    item.transform.GetChild(UpgradePurchaseItemPanel.FilterPanelIndex).gameObject.SetActive(false);
+                    item.GetComponent<UpgradePurchaseItemPanel>().IsPurchased = false;
+                }
+                else
+                {
+                    // Enable the filter panel and set the item to be purchased.
+                    item.transform.GetChild(UpgradePurchaseItemPanel.FilterPanelIndex).gameObject.SetActive(true);
+                    item.GetComponent<UpgradePurchaseItemPanel>().IsPurchased = true;
                 }
             }
         }

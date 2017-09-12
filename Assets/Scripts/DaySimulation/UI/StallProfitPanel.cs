@@ -50,6 +50,11 @@ namespace DaySimulation.UI
                 // Keep filling the stall profit dislay grid.
                 if (currentStallToDisplay < MaxStallCount)
                 {
+                    if (ProgressManager.StallSpaces[currentStallToDisplay] == null)
+                    {
+                        return;
+                    }
+
                     if (ProgressManager.StallSpaces[currentStallToDisplay].SpaceType != StallSpaceType.EmptyStall)
                     {
                         GameObject stallProfitObject = Instantiate(StallProfitObject, transform);

@@ -17,5 +17,9 @@ namespace Progress
         /// Information on the amount of money the player has.
         /// </summary>
         public int Money;
+        /// <summary>
+        /// The size of the place's area.
+        /// </summary>
+        public int PlaceSize;
     }
 }

@@ -19,6 +19,7 @@ namespace PreparationScene.UI.Buttons
         public void OnPointerClick(PointerEventData eventData)
         {
             // TODO Show an are you sure dialogue box first.
+            Destroy(ProfitTracker.instance.gameObject);
             ProgressManager.DeleteSaveFile();
             Destroy(Music.instance.gameObject);
             SceneManager.LoadScene("LogoScene");

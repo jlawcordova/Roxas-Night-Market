@@ -2,6 +2,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using Audio;
+using Progress;
 
 namespace Purchase.UI.Buttons
 {
@@ -21,10 +22,20 @@ namespace Purchase.UI.Buttons
                 Music.instance.ToggleVolumeNoSave(true);
             }
 
+            // Load the preparation scene when a stall is bought while also checking for unlocks.
+            // Load the purchase scene again when an upgrade is bought.
             switch (PurchaseInformation.Type)
             {
                 case PurchaseType.BuyStall:
-                    SceneManager.LoadScene("PreparationScene");
+                    // Check Place Size Unlock
+                    if (ProgressManager.CheckPlaceSizeUpgrade())
+                    {
+                        SceneManager.LoadScene("UnlockedScene");
+                    }
+                    else
+                    {
+                        SceneManager.LoadScene("PreparationScene");
+                    }
 
                     break;
                 case PurchaseType.UpgradeStall:

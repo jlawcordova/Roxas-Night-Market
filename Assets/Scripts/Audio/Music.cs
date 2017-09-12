@@ -20,7 +20,15 @@ namespace Audio
 
             DontDestroyOnLoad(gameObject);
 
-            ToggleVolume(PlayerPrefs.GetInt("MusicVolume") == 1 ? true : false);
+            if (PlayerPrefs.HasKey("MusicVolume"))
+            {
+                ToggleVolume(PlayerPrefs.GetInt("MusicVolume") == 1 ? true : false);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("MusicVolume", 1);
+                ToggleVolume(PlayerPrefs.GetInt("MusicVolume") == 1 ? true : false);
+            }
         }
 
         public void Destroy()

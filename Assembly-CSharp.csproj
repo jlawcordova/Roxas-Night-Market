@@ -48,12 +48,14 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Audio\Music.cs" />
      <Compile Include="Assets\Scripts\Audio\Sound.cs" />
+     <Compile Include="Assets\Scripts\CameraHandler.cs" />
      <Compile Include="Assets\Scripts\Customer\Customer.cs" />
      <Compile Include="Assets\Scripts\Customer\CustomerBubble.cs" />
      <Compile Include="Assets\Scripts\Customer\CustomerBubbleType.cs" />
      <Compile Include="Assets\Scripts\Customer\CustomerGenerator.cs" />
      <Compile Include="Assets\Scripts\Customer\CustomerState.cs" />
      <Compile Include="Assets\Scripts\DaySimulation\Background.cs" />
+     <Compile Include="Assets\Scripts\DaySimulation\CitySounds.cs" />
      <Compile Include="Assets\Scripts\DaySimulation\Clock.cs" />
      <Compile Include="Assets\Scripts\DaySimulation\SpeedManager.cs" />
      <Compile Include="Assets\Scripts\DaySimulation\UI\Buttons\OkButton.cs" />
@@ -79,6 +81,7 @@
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\SellButton.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\SellYesButton.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\SettingsButton.cs" />
+     <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\SoundToggle.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\StartDayButton.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\UpgradeStallButton.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\ClickSelectionManager.cs" />
@@ -107,6 +110,7 @@
      <Compile Include="Assets\Scripts\Purchase\UI\PurchaseType.cs" />
      <Compile Include="Assets\Scripts\Purchase\UI\SpinningUI.cs" />
      <Compile Include="Assets\Scripts\StallSpace\EmptyStall.cs" />
+     <Compile Include="Assets\Scripts\StallSpace\IHighlightable.cs" />
      <Compile Include="Assets\Scripts\StallSpace\IStallSpaceInformation.cs" />
      <Compile Include="Assets\Scripts\StallSpace\Stall.cs" />
      <Compile Include="Assets\Scripts\StallSpace\StallSpace.cs" />
@@ -121,6 +125,7 @@
      <Compile Include="Assets\Scripts\StallSpace\Upgrades\Upgrade.cs" />
      <Compile Include="Assets\Scripts\StallSpace\Upgrades\UpgradeData.cs" />
      <Compile Include="Assets\Scripts\StallSpace\Upgrades\UpgradeSlot.cs" />
+     <Compile Include="Assets\Scripts\UnlockedTap.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

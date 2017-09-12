@@ -33,6 +33,7 @@ namespace Purchase.UI.Buttons
                 // When buying an upgrade.
                 else if (PurchaseInformation.Type == PurchaseType.UpgradeStall) 
                 {
+                    #region Buying Upgrade
                     // Get the upgrade details of the purchased item.
                     int upgradeNumber = ((UpgradePurchaseItemPanel)PurchaseItemPanel.SelectedPurchaseItem).UpgradeNumber;
                     string name = (PurchaseItemPanel.SelectedPurchaseItem).ItemName;
@@ -59,12 +60,12 @@ namespace Purchase.UI.Buttons
 
                     // Add upgrade to the stall.
                     ProgressManager.StallSpaces[PurchaseInformation.StallToAffect].StallUpgrades.Add(new UpgradeData(upgradeNumber, name, slot));
-
                     // Deduct money based on cost.
                     ProgressManager.Money -= PurchaseItemPanel.SelectedPurchaseItem.ItemCost;
+                    #endregion
                 }
 
-                CongratsPanelObject.GetComponent<CongratsPanel>().Appear((PurchaseItemPanel.SelectedPurchaseItem).ItemName, (PurchaseItemPanel.SelectedPurchaseItem).ItemSprite);
+                CongratsPanelObject.GetComponent<CongratsPanel>().Appear((PurchaseItemPanel.SelectedPurchaseItem).ItemName, (PurchaseItemPanel.SelectedPurchaseItem).ItemDetailSprite);
             }
         }
     }

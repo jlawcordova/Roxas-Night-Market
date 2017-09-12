@@ -124,10 +124,22 @@ namespace Customer
         #endregion
 
         #region Customer Sounds
+        /// <summary>
+        /// The sound when the customer is buying.
+        /// </summary>
         public AudioClip BuyingSound;
+        /// <summary>
+        /// The sound when the customer has already bought something.
+        /// </summary>
         public AudioClip BoughtSound;
+        /// <summary>
+        /// The sound when the customer gets impatient.
+        /// </summary>
         public AudioClip ImpatientSound;
 
+        /// <summary>
+        /// The audio source of the game object.
+        /// </summary>
         private AudioSource soundSource;
         #endregion
 
@@ -138,6 +150,10 @@ namespace Customer
         {
             soundSource = gameObject.GetComponent<AudioSource>();
             animator = gameObject.GetComponent<Animator>();
+
+            // Set the soound of this game object based on the settings.
+            Sound.SetSound(soundSource, 0.5f);
+
             // Set the boxcollider.
             boxCollider = GetComponent<BoxCollider2D>();
 

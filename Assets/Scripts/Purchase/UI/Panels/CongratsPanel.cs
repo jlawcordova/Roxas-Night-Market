@@ -6,6 +6,8 @@ namespace Purchase.UI
 {
     public class CongratsPanel : MonoBehaviour
     {
+        public bool StartHidden;
+
         /// <summary>
         /// The resize speeds of the shapes on the congrats panel.
         /// </summary>
@@ -18,13 +20,26 @@ namespace Purchase.UI
         // Use this for initialization
         void Start()
         {
-            gameObject.SetActive(false);
+            // Set the sound of this game object based on the settings.
+            Sound.SetSound(gameObject.GetComponent<AudioSource>(), 1);
+
+            if (StartHidden)
+            {
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                Music.instance.ToggleVolumeNoSave(false);
+            }
         }
 
+        /// <summary>
+        /// Updates every frame.
+        /// </summary>
         void Update()
         {
             // Make the shapes change size.
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < ShapeSpeeds.Length; i++)
             {
                 if (gameObject.transform.GetChild(i).GetComponent<RectTransform>().rect.height < ShapeFinalSizes[i])
                 {
@@ -43,7 +58,7 @@ namespace Purchase.UI
             Music.instance.ToggleVolumeNoSave(false);
             gameObject.SetActive(true);
 
-            gameObject.transform.GetChild(3).GetComponent<Text>().text = itemName;
+            gameObject.transform.GetChild(3).GetComponent<Text>().text = itemName.Replace("\n", " ");
             gameObject.transform.GetChild(4).GetComponent<Image>().sprite = itemImage;
         }
     }
