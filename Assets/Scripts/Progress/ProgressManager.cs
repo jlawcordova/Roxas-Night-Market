@@ -16,7 +16,7 @@ namespace Progress
         /// Stall spaces information that can be saved.
         /// </summary>
         public static StallSpaceInformation[] StallSpaces;
-        private const int MaxStallSpacesCount = 7;
+        private const int MaxStallSpacesCount = 12;
 
         /// <summary>
         /// The amount of money the player has.
@@ -41,6 +41,7 @@ namespace Progress
         public static event EventHandler MoneyUpdated;
 
         public static int PlaceSize;
+        public static bool TutorialMode;
         #endregion
 
         /// <summary>
@@ -65,6 +66,8 @@ namespace Progress
             data.Money = ProgressManager.Money;
             // Copy the current place size to the data that will be saved.
             data.PlaceSize = ProgressManager.PlaceSize;
+            // Copy the current tutorial mode.
+            data.TutorialMode = ProgressManager.TutorialMode;
 
             // Save data to the file.
             formatter.Serialize(file, data);
@@ -93,6 +96,8 @@ namespace Progress
                 ProgressManager.Money = data.Money;
                 // Get the place size from the data.
                 ProgressManager.PlaceSize = data.PlaceSize;
+                // Get the tutorial mode.
+                ProgressManager.TutorialMode = data.TutorialMode;
             }
             else
             {
@@ -106,10 +111,16 @@ namespace Progress
                 ProgressManager.StallSpaces[4] = null;
                 ProgressManager.StallSpaces[5] = null;
                 ProgressManager.StallSpaces[6] = null;
+                ProgressManager.StallSpaces[7] = null;
+                ProgressManager.StallSpaces[8] = null;
+                ProgressManager.StallSpaces[9] = null;
+                ProgressManager.StallSpaces[10] = null;
+                ProgressManager.StallSpaces[11] = null;
 
                 // Create initial money.
-                ProgressManager.Money = 10000;
+                ProgressManager.Money = 0;
                 ProgressManager.PlaceSize = 0;
+                ProgressManager.TutorialMode = true;
 
                 // Save the information to the save file.
                 SaveProgressToFile();
@@ -135,6 +146,7 @@ namespace Progress
                 // First upgrade.
                 case 0:
                     bool allStallsBought = true;
+
                     for (int i = 0; i < 3; i++)
                     {
                         if (ProgressManager.StallSpaces[i].SpaceType == StallSpaceType.EmptyStall)
@@ -154,6 +166,54 @@ namespace Progress
 
                         return true;
                     }
+                    break;
+
+                case 1:
+                    allStallsBought = true;
+                    for (int i = 0; i < 6; i++)
+                    {
+                        if (ProgressManager.StallSpaces[i].SpaceType == StallSpaceType.EmptyStall)
+                        {
+                            allStallsBought = false;
+                        }
+                    }
+
+                    // Add three stall spaces and increase place size.
+                    if (allStallsBought)
+                    {
+                        ProgressManager.PlaceSize = 2;
+
+                        ProgressManager.StallSpaces[6] = new StallSpaceInformation() { StallSpaceNumber = 6, SpaceType = StallSpaceType.EmptyStall };
+                        ProgressManager.StallSpaces[7] = new StallSpaceInformation() { StallSpaceNumber = 7, SpaceType = StallSpaceType.EmptyStall };
+                        ProgressManager.StallSpaces[8] = new StallSpaceInformation() { StallSpaceNumber = 8, SpaceType = StallSpaceType.EmptyStall };
+
+                        return true;
+                    }
+
+                    break;
+
+                case 2:
+                    allStallsBought = true;
+                    for (int i = 0; i < 9; i++)
+                    {
+                        if (ProgressManager.StallSpaces[i].SpaceType == StallSpaceType.EmptyStall)
+                        {
+                            allStallsBought = false;
+                        }
+                    }
+
+                    // Add three stall spaces and increase place size.
+                    if (allStallsBought)
+                    {
+                        ProgressManager.PlaceSize = 3;
+
+                        ProgressManager.StallSpaces[9] = new StallSpaceInformation() { StallSpaceNumber = 9, SpaceType = StallSpaceType.EmptyStall };
+                        ProgressManager.StallSpaces[10] = new StallSpaceInformation() { StallSpaceNumber = 10, SpaceType = StallSpaceType.EmptyStall };
+                        ProgressManager.StallSpaces[11] = new StallSpaceInformation() { StallSpaceNumber = 11, SpaceType = StallSpaceType.EmptyStall };
+
+                        return true;
+                    }
+
                     break;
 
                 default:

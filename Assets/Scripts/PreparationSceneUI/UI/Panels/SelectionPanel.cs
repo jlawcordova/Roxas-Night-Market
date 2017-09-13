@@ -150,8 +150,15 @@ namespace PreparationScene.UI.Panels
                     break;
                 case StallSpaceType.KwekKwekStall:
                     ButtonsOnPanel.Add(Instantiate(AddStockButton, transform));
-                    ButtonsOnPanel.Add(Instantiate(UpgradeStallButton, transform));
-                    ButtonsOnPanel.Add(Instantiate(SellStallButton, transform));
+                    if (UpgradeStallButton != null)
+                    {
+                        ButtonsOnPanel.Add(Instantiate(UpgradeStallButton, transform));
+                    }
+                    if (SellStallButton != null)
+                    {
+                        ButtonsOnPanel.Add(Instantiate(SellStallButton, transform));
+                    }
+
                     break;
                 default:
                     throw new System.ArgumentException("Clicked object type invalid.");

@@ -2,6 +2,7 @@
 using UnityEngine.EventSystems;
 using StallSpace;
 using Progress;
+using System;
 
 namespace PreparationScene.UI.Buttons
 {
@@ -10,6 +11,8 @@ namespace PreparationScene.UI.Buttons
     /// </summary>
     public class AddStockButton : MonoBehaviour, IPointerClickHandler
     {
+        public static event EventHandler RestockedClicked;
+
         /// <summary>
         /// The amount of how much the stall's stock increase when clicking this button.
         /// </summary>
@@ -30,6 +33,16 @@ namespace PreparationScene.UI.Buttons
                 ProgressManager.Money -= selectedStall.StallRestockCost;
                 // Increase the stall's stock.
                 selectedStall.StockCount += StockIncreaseAmount;
+            }
+
+            OnRestockClicked();
+        }
+
+        private void OnRestockClicked()
+        {
+            if (RestockedClicked != null)
+            {
+                RestockedClicked(this, EventArgs.Empty);
             }
         }
     }

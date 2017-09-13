@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Progress;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -15,7 +16,14 @@ namespace Mainscreen
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            SceneManager.LoadScene("PreparationScene");
+            if (ProgressManager.TutorialMode)
+            {
+                SceneManager.LoadScene("StartStoryScene");
+            }
+            else
+            {
+                SceneManager.LoadScene("PreparationScene");
+            }
         }
     }
 }

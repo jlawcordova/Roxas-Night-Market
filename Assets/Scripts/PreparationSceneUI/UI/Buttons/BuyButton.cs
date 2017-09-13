@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using StallSpace;
 using Purchase.UI;
+using Progress;
 
 namespace PreparationScene.UI.Buttons
 {
@@ -22,7 +23,15 @@ namespace PreparationScene.UI.Buttons
             // Inform the next scene on what stallspace will be affected by the purchase.
             PurchaseInformation.StallToAffect = selectedStallSpace.StallSpaceNumber;
             PurchaseInformation.Type = PurchaseType.BuyStall;
-            SceneManager.LoadScene("PurchaseScene");
+
+            if (ProgressManager.TutorialMode)
+            {
+                SceneManager.LoadScene("TutorialPurchaseScene");
+            }
+            else
+            {
+                SceneManager.LoadScene("PurchaseScene");
+            }
         }
     }
 }

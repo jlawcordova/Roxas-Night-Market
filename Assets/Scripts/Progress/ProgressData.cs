@@ -21,5 +21,9 @@ namespace Progress
         /// The size of the place's area.
         /// </summary>
         public int PlaceSize;
+        /// <summary>
+        /// Determines if the game is in tutorial mode.
+        /// </summary>
+        public bool TutorialMode;
     }
 }

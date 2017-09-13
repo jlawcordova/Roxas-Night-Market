@@ -12,17 +12,15 @@ namespace PreparationScene.UI.Buttons
     /// </summary>
     public class ResetGameButton : MonoBehaviour, IPointerClickHandler
     {
+        public GameObject ResetConfirmationPanel;
+
         /// <summary>
         /// Occurs when clicking the reset game button.
         /// </summary>
         /// <param name="eventData">Pointer click event data.</param>
         public void OnPointerClick(PointerEventData eventData)
         {
-            // TODO Show an are you sure dialogue box first.
-            Destroy(ProfitTracker.instance.gameObject);
-            ProgressManager.DeleteSaveFile();
-            Destroy(Music.instance.gameObject);
-            SceneManager.LoadScene("LogoScene");
+            ResetConfirmationPanel.SetActive(true);
         }
     }
 }

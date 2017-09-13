@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\DaySimulation\CitySounds.cs" />
      <Compile Include="Assets\Scripts\DaySimulation\Clock.cs" />
      <Compile Include="Assets\Scripts\DaySimulation\SpeedManager.cs" />
+     <Compile Include="Assets\Scripts\DaySimulation\TutorialDialogue.cs" />
      <Compile Include="Assets\Scripts\DaySimulation\UI\Buttons\OkButton.cs" />
      <Compile Include="Assets\Scripts\DaySimulation\UI\Buttons\SpeedButton.cs" />
      <Compile Include="Assets\Scripts\DaySimulation\UI\ClockIcon.cs" />
@@ -78,6 +79,7 @@
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\MusicToggle.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\ReloadButton.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\ResetGameButton.cs" />
+     <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\ResetYesButton.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\SellButton.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\SellYesButton.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\SettingsButton.cs" />
@@ -85,9 +87,12 @@
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\StartDayButton.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\UpgradeStallButton.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\ClickSelectionManager.cs" />
+     <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Panels\GuidePanel.cs" />
+     <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Panels\ResetConfirmationPanel.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Panels\SelectionPanel.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Panels\SellConfirmationPanel.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Panels\SettingsPanel.cs" />
+     <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Panels\TutorialEnder.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Texts\MoneyChangeText.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Texts\MoneyText.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Texts\ThreeDimensionText.cs" />
@@ -125,7 +130,11 @@
      <Compile Include="Assets\Scripts\StallSpace\Upgrades\Upgrade.cs" />
      <Compile Include="Assets\Scripts\StallSpace\Upgrades\UpgradeData.cs" />
      <Compile Include="Assets\Scripts\StallSpace\Upgrades\UpgradeSlot.cs" />
-     <Compile Include="Assets\Scripts\UnlockedTap.cs" />
+     <Compile Include="Assets\Scripts\StartStory\CameraHandler.cs" />
+     <Compile Include="Assets\Scripts\StartStory\ClickToNextScene.cs" />
+     <Compile Include="Assets\Scripts\StartStory\DialoguePanel.cs" />
+     <Compile Include="Assets\Scripts\StartStory\TutorialHandler.cs" />
+     <Compile Include="Assets\Scripts\UnlockedScene\UnlockedTap.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

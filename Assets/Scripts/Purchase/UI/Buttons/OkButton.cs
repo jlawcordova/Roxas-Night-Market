@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using Audio;
 using Progress;
+using StartStory;
 
 namespace Purchase.UI.Buttons
 {
@@ -27,14 +28,23 @@ namespace Purchase.UI.Buttons
             switch (PurchaseInformation.Type)
             {
                 case PurchaseType.BuyStall:
-                    // Check Place Size Unlock
-                    if (ProgressManager.CheckPlaceSizeUpgrade())
+                    // Check if the game is in tutorial mode.
+                    if (ProgressManager.TutorialMode)
                     {
-                        SceneManager.LoadScene("UnlockedScene");
+                        TutorialHandler.TutorialNumber = 2;
+                        SceneManager.LoadScene("TutorialPreparationScene");
                     }
                     else
                     {
-                        SceneManager.LoadScene("PreparationScene");
+                        // Check Place Size Unlock
+                        if (ProgressManager.CheckPlaceSizeUpgrade())
+                        {
+                            SceneManager.LoadScene("UnlockedScene");
+                        }
+                        else
+                        {
+                            SceneManager.LoadScene("PreparationScene");
+                        }
                     }
 
                     break;
