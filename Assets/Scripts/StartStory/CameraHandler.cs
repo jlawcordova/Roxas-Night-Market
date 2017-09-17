@@ -9,10 +9,12 @@ namespace StartStory
         public int CameraXEndpoint;
         public float CameraXSpeed;
 
+        public GameObject Dialogue;
+
         // Use this for initialization
         void Start()
         {
-
+            Dialogue.SetActive(false);
         }
 
         // Update is called once per frame
@@ -21,6 +23,10 @@ namespace StartStory
             if (gameObject.transform.position.x < CameraXEndpoint)
             {
                 gameObject.transform.position += new Vector3(CameraXSpeed, 0, 0);
+            }
+            else
+            {
+                Dialogue.SetActive(true);
             }
         }
     }

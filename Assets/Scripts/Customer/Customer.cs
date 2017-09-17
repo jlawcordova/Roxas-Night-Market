@@ -18,10 +18,12 @@ namespace Customer
         /// <summary>
         /// Indicates whether the customer is walking right or left.
         /// </summary>
+        [HideInInspector]
         public bool IsGoingRight;
         /// <summary>
         /// Point where customer stops and is destroyed.
         /// </summary>
+        [HideInInspector]
         public float EndPoint;
 
         /// <summary>
@@ -57,6 +59,11 @@ namespace Customer
         /// 1/x chance the customer will perform a special move.
         /// </summary>
         public int CustomerSpecialChance = 1750;
+        /// <summary>
+        /// The amount of extra that the customer pays a stall.
+        /// </summary>
+        public int ExtraPayment;
+        public bool IsAttractedToEverything;
         #endregion
 
         #region Current Customer Values
@@ -218,13 +225,15 @@ namespace Customer
                                 // Add the stall to the list of stalls already seen by the customer.
                                 seenStalls.Add(currentStall);
 
-                                if (IsAttractedToStall(currentStall) && currentStall.gameObject.GetComponent<StallSpace.Stall>().StockCount > 0)
+                                if ((IsAttractedToStall(currentStall) || IsAttractedToEverything) && currentStall.gameObject.GetComponent<StallSpace.Stall>().StockCount > 0)
                                 {
                                     // Only try to attract the customer when the stall line is not yet full.
                                     if (currentStall.CustomersInLine + 1 <= currentStall.MaxCustomersInLine)
                                     {
                                         currentStall.AddACustomerToLine();
                                         // If attracted, set the customer to walk to the stall.
+                                        currentCustomerPatience += currentStall.PatienceIncrease;
+
                                         customerStatus = CustomerState.WalkingToStall;
                                         animator.SetTrigger("IsWalkingUp");
 
@@ -368,7 +377,7 @@ namespace Customer
                                 transform.gameObject.GetComponent<SpriteRenderer>().flipX = true;
                             }
 
-                            currentStall.Buy(1);
+                            currentStall.Buy(1, ExtraPayment);
 
                             // Get the position where the customer will walk to after buying.
                             positionAfterBuying = transform.position + new Vector3(1, 0, 0);

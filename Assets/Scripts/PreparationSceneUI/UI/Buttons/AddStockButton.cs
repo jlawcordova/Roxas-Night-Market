@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using StallSpace;
 using Progress;
 using System;
+using Audio;
 
 namespace PreparationScene.UI.Buttons
 {
@@ -13,10 +14,20 @@ namespace PreparationScene.UI.Buttons
     {
         public static event EventHandler RestockedClicked;
 
+        public AudioClip ClickSound;
+        private AudioSource source;
+
         /// <summary>
         /// The amount of how much the stall's stock increase when clicking this button.
         /// </summary>
         public int StockIncreaseAmount = 5;
+
+        void Start()
+        {
+            source = gameObject.GetComponent<AudioSource>();
+
+            Sound.SetSound(source, 0.3f);
+        }
 
         public void OnPointerClick(PointerEventData eventData)
         {
@@ -33,9 +44,17 @@ namespace PreparationScene.UI.Buttons
                 ProgressManager.Money -= selectedStall.StallRestockCost;
                 // Increase the stall's stock.
                 selectedStall.StockCount += StockIncreaseAmount;
+
+                PlaySound();
             }
 
             OnRestockClicked();
+        }
+
+        private void PlaySound()
+        {
+            source.clip = ClickSound;
+            source.Play();
         }
 
         private void OnRestockClicked()

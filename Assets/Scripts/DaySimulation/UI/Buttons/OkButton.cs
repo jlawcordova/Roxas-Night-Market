@@ -2,6 +2,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using Progress;
+using UnlockedScene;
 
 namespace DaySimulation.UI.Buttons
 {
@@ -16,11 +17,23 @@ namespace DaySimulation.UI.Buttons
         /// <param name="eventData">Pointer click event data.</param>
         public void OnPointerClick(PointerEventData eventData)
         {
-            ProfitTracker.instance.Reset();
-
             SpeedManager.instance.SetToNormalSpeed();
 
-            SceneManager.LoadScene("PreparationScene");
+            int unlockedCustomerNumber;
+
+            // Check if a customer is unlocked.
+            if (ProgressManager.CheckCustomerUnlock(out unlockedCustomerNumber))
+            {
+                UnlockCustomerInformation.CustomerNumber = unlockedCustomerNumber;
+                SceneManager.LoadScene("UnlockedCustomerScene");
+            }
+            else
+            {
+                // Just load normally if no customer is unlocked.
+                ProfitTracker.instance.Reset();
+
+                SceneManager.LoadScene("PreparationScene");
+            }
         }
     }
 }

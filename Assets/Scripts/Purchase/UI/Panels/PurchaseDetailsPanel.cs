@@ -91,20 +91,28 @@ namespace Purchase.UI
                         
                         switch (((UpgradePurchaseItemPanel)PurchaseItemPanel.SelectedPurchaseItem).Slot)
                         {
-                            case StallSpace.Upgrades.UpgradeSlot.BackRight:
+                            case StallSpace.Upgrades.UpgradeSlot.Back:
                                 transform.GetChild(PlacementIndex).GetComponent<Text>().text = "Back";
 
                                 break;
-                            case StallSpace.Upgrades.UpgradeSlot.FrontRight:
+                            case StallSpace.Upgrades.UpgradeSlot.Front:
                                 transform.GetChild(PlacementIndex).GetComponent<Text>().text = "Front";
 
                                 break;
-                            case StallSpace.Upgrades.UpgradeSlot.TableLeft:
+                            case StallSpace.Upgrades.UpgradeSlot.Left:
                                 transform.GetChild(PlacementIndex).GetComponent<Text>().text = "Left";
 
                                 break;
-                            case StallSpace.Upgrades.UpgradeSlot.TableRight:
+                            case StallSpace.Upgrades.UpgradeSlot.Right:
                                 transform.GetChild(PlacementIndex).GetComponent<Text>().text = "Right";
+
+                                break;
+                            case StallSpace.Upgrades.UpgradeSlot.Street:
+                                transform.GetChild(PlacementIndex).GetComponent<Text>().text = "Street";
+
+                                break;
+                            case StallSpace.Upgrades.UpgradeSlot.Top:
+                                transform.GetChild(PlacementIndex).GetComponent<Text>().text = "Top"    ;
 
                                 break;
                             default:

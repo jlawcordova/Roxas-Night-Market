@@ -35,6 +35,8 @@ namespace StartStory
             }
             else if (TutorialNumber == 2)
             {
+                TutorialNumber = 1;
+
                 Dialogue1PanelObject.SetActive(false);
                 Dialogue3PanelObject.SetActive(false);
 

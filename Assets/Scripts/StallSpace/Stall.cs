@@ -64,6 +64,10 @@ namespace StallSpace
         /// The amount of money earned by the stall per customer purchase.
         /// </summary>
         public int StallProductPurchaseCost;
+        /// <summary>
+        /// The amount of patience that stall increases for customers.
+        /// </summary>
+        public int PatienceIncrease;
         
         [SerializeField]
         private Color highlightColor;
@@ -165,16 +169,16 @@ namespace StallSpace
         /// <summary>
         /// Called when a customer buys from the stall.
         /// </summary>
-        public void Buy(int amount)
+        public void Buy(int amount, int extraPayment)
         {
             StockCount--;
 
             // Update the profit tracker.
-            ProfitTracker.instance.StallProfit[this.StallSpaceNumber] += StallProductPurchaseCost;
+            ProfitTracker.instance.StallProfit[this.StallSpaceNumber] += StallProductPurchaseCost + extraPayment;
 
             // Update progress.
             ProgressManager.StallSpaces[StallSpaceNumber].StockCount = StockCount;
-            ProgressManager.Money += StallProductPurchaseCost;
+            ProgressManager.Money += StallProductPurchaseCost + extraPayment;
         }
 
         /// <summary>

@@ -79,6 +79,8 @@ namespace DaySimulation
         /// </summary>
         public event EventHandler ClockUpdated;
 
+        private bool DayIncremented = false;
+
         /// <summary>
         /// Awakening of the clock.
         /// </summary>
@@ -131,6 +133,11 @@ namespace DaySimulation
             if (CurrentHour >= EndingHour && CurrentMinute >= EndingMinute)
             {
                 SpeedManager.instance.Pause();
+                if (!DayIncremented)
+                {
+                    ProgressManager.Day++;
+                    DayIncremented = true;
+                }
                 ProgressManager.SaveProgressToFile();
 
                 // Display the end day panel.

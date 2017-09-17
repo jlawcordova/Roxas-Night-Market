@@ -29,7 +29,10 @@ namespace Purchase.UI
             }
             else
             {
-                Music.instance.ToggleVolumeNoSave(false);
+                if (Music.instance != null)
+                {
+                    Music.instance.ToggleVolumeNoSave(false);
+                }
             }
         }
 

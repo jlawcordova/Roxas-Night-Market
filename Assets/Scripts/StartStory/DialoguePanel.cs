@@ -54,7 +54,6 @@ public class DialoguePanel : MonoBehaviour
     /// </summary>
     private Text dialogueText;
     private GameObject dialogueTextObject;
-    private Text continueText;
     private GameObject continueTextObject;
 
     /// <summary>
@@ -93,7 +92,6 @@ public class DialoguePanel : MonoBehaviour
 
         // Set the texts and gameobjects.
         dialogueText = transform.GetChild(DialogueTextIndex).GetComponent<Text>();
-        continueText = transform.GetChild(ContinueTextIndex).GetComponent<Text>();
         continueTextObject = transform.GetChild(ContinueTextIndex).gameObject;
 
         // Set the initial condition of the dialogue.

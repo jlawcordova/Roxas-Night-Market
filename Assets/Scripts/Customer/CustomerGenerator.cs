@@ -85,7 +85,8 @@ namespace Customer
                     // Generate a customer when the chance is hit.
                     if (Random.Range(0, 100) < GeneratingChance)
                     {
-                        int customerNumber = Random.Range(0, 2);
+                        int randomUnlockedNumber = Random.Range(0, ProgressManager.CustomersUnlocked.Count);
+                        int customerNumber = ProgressManager.CustomersUnlocked[randomUnlockedNumber];
 
                         // 50/50 chance to place the customer either on the left or right.
                         if (Random.Range(0, 2) == 0)

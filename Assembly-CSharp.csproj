@@ -50,10 +50,13 @@
      <Compile Include="Assets\Scripts\Audio\Sound.cs" />
      <Compile Include="Assets\Scripts\CameraHandler.cs" />
      <Compile Include="Assets\Scripts\Customer\Customer.cs" />
+     <Compile Include="Assets\Scripts\Customer\CustomerAlbumItem.cs" />
+     <Compile Include="Assets\Scripts\Customer\CustomerAlbumSelectionGrid.cs" />
      <Compile Include="Assets\Scripts\Customer\CustomerBubble.cs" />
      <Compile Include="Assets\Scripts\Customer\CustomerBubbleType.cs" />
      <Compile Include="Assets\Scripts\Customer\CustomerGenerator.cs" />
      <Compile Include="Assets\Scripts\Customer\CustomerState.cs" />
+     <Compile Include="Assets\Scripts\Customer\CustomersAlbumDetailsPanel.cs" />
      <Compile Include="Assets\Scripts\DaySimulation\Background.cs" />
      <Compile Include="Assets\Scripts\DaySimulation\CitySounds.cs" />
      <Compile Include="Assets\Scripts\DaySimulation\Clock.cs" />
@@ -74,6 +77,7 @@
      <Compile Include="Assets\Scripts\Mainscreen\MainPanel.cs" />
      <Compile Include="Assets\Scripts\Mainscreen\TapText.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\AddStockButton.cs" />
+     <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\AlbumButton.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\BuyButton.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\ExitGameButton.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\MusicToggle.cs" />
@@ -93,6 +97,8 @@
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Panels\SellConfirmationPanel.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Panels\SettingsPanel.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Panels\TutorialEnder.cs" />
+     <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Texts\BlinkingText.cs" />
+     <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Texts\DayText.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Texts\MoneyChangeText.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Texts\MoneyText.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Texts\ThreeDimensionText.cs" />
@@ -126,14 +132,20 @@
      <Compile Include="Assets\Scripts\StallSpace\Upgrades\AttractionIncreaseUpgrade.cs" />
      <Compile Include="Assets\Scripts\StallSpace\Upgrades\IsawStall\IsawGrill.cs" />
      <Compile Include="Assets\Scripts\StallSpace\Upgrades\KwekKwekStall\AppleCiderVinegar.cs" />
+     <Compile Include="Assets\Scripts\StallSpace\Upgrades\PatienceIncreaseUpgrade.cs" />
      <Compile Include="Assets\Scripts\StallSpace\Upgrades\StockIncreaseUpgrade.cs" />
      <Compile Include="Assets\Scripts\StallSpace\Upgrades\Upgrade.cs" />
      <Compile Include="Assets\Scripts\StallSpace\Upgrades\UpgradeData.cs" />
      <Compile Include="Assets\Scripts\StallSpace\Upgrades\UpgradeSlot.cs" />
      <Compile Include="Assets\Scripts\StartStory\CameraHandler.cs" />
+     <Compile Include="Assets\Scripts\StartStory\Car.cs" />
      <Compile Include="Assets\Scripts\StartStory\ClickToNextScene.cs" />
      <Compile Include="Assets\Scripts\StartStory\DialoguePanel.cs" />
      <Compile Include="Assets\Scripts\StartStory\TutorialHandler.cs" />
+     <Compile Include="Assets\Scripts\UnlockedScene\CustomerNameText.cs" />
+     <Compile Include="Assets\Scripts\UnlockedScene\UnlockCustomerInformation.cs" />
+     <Compile Include="Assets\Scripts\UnlockedScene\UnlockedCustomerImage.cs" />
+     <Compile Include="Assets\Scripts\UnlockedScene\UnlockedCustomerTap.cs" />
      <Compile Include="Assets\Scripts\UnlockedScene\UnlockedTap.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
