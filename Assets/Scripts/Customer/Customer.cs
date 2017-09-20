@@ -120,6 +120,16 @@ namespace Customer
         public GameObject CustomeIsawBubble;
 
         /// <summary>
+        /// The customer bubble object for buying icecream.
+        /// </summary>
+        public GameObject CustomerIcecreamBubble;
+
+        /// <summary>
+        /// The customer bubble object for buying fruit shake.
+        /// </summary>
+        public GameObject CustomerFruitShakeBubble;
+
+        /// <summary>
         /// The customer bubble object for showing impatience.
         /// </summary>
         public GameObject CustomerTimeBubble;
@@ -292,6 +302,12 @@ namespace Customer
                                         break;
                                     case StallSpaceType.IsawStall:
                                         GenerateBubble(CustomerBubbleType.Isaw);
+                                        break;
+                                    case StallSpaceType.IcecreamStall:
+                                        GenerateBubble(CustomerBubbleType.Icecream);
+                                        break;
+                                    case StallSpaceType.FruitShakeStall:
+                                        GenerateBubble(CustomerBubbleType.FruitShake);
                                         break;
                                     default:
                                         break;
@@ -582,6 +598,16 @@ namespace Customer
                     // Set the bubbles customer to this game object as well as the direction.
                     CustomeIsawBubble.GetComponent<CustomerBubble>().CustomerUsingTheBubble = gameObject;
                     Instantiate(CustomeIsawBubble, transform.position + new Vector3(CustomerBubbleOffset.x * CustomeIsawBubble.GetComponent<CustomerBubble>().BubbleDirection.x, CustomerBubbleOffset.y, CustomerBubbleOffset.z), Quaternion.identity);
+                    break;
+                case CustomerBubbleType.Icecream:
+                    // Set the bubbles customer to this game object as well as the direction.
+                    CustomerIcecreamBubble.GetComponent<CustomerBubble>().CustomerUsingTheBubble = gameObject;
+                    Instantiate(CustomerIcecreamBubble, transform.position + new Vector3(CustomerBubbleOffset.x * CustomerIcecreamBubble.GetComponent<CustomerBubble>().BubbleDirection.x, CustomerBubbleOffset.y, CustomerBubbleOffset.z), Quaternion.identity);
+                    break;
+                case CustomerBubbleType.FruitShake:
+                    // Set the bubbles customer to this game object as well as the direction.
+                    CustomerFruitShakeBubble.GetComponent<CustomerBubble>().CustomerUsingTheBubble = gameObject;
+                    Instantiate(CustomerFruitShakeBubble, transform.position + new Vector3(CustomerBubbleOffset.x * CustomerFruitShakeBubble.GetComponent<CustomerBubble>().BubbleDirection.x, CustomerBubbleOffset.y, CustomerBubbleOffset.z), Quaternion.identity);
                     break;
                 default:
                     break;

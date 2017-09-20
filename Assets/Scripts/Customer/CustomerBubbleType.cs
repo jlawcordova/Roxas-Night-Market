@@ -11,7 +11,11 @@
         Time,
         // KwekKwek customer bubble. Appears when the customer is buying from a kwekkwek stall.
         Kwekkwek,
-        // Isaw customer bubble. Appears when the customer is buying from a isaw stall.
-        Isaw
+        // Isaw customer bubble. Appears when the customer is buying from an isaw stall.
+        Isaw,
+        // Icecream customer bubble. Appears when the customer is buying from an icecream stall.
+        Icecream,
+        // Fruitshake customer bubble. Appears when the customer is buying from an fruitshake stall.
+        FruitShake
     }
 }

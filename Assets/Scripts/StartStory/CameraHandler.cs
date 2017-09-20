@@ -9,12 +9,15 @@ namespace StartStory
         public int CameraXEndpoint;
         public float CameraXSpeed;
 
-        public GameObject Dialogue;
+        public GameObject[] HiddenOnjects;
 
         // Use this for initialization
         void Start()
         {
-            Dialogue.SetActive(false);
+            foreach (GameObject hiddenOnject in HiddenOnjects)
+            {
+                hiddenOnject.SetActive(false);
+            }
         }
 
         // Update is called once per frame
@@ -26,7 +29,10 @@ namespace StartStory
             }
             else
             {
-                Dialogue.SetActive(true);
+                foreach (GameObject hiddenOnject in HiddenOnjects)
+                {
+                    hiddenOnject.SetActive(true);
+                }
             }
         }
     }

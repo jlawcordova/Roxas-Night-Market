@@ -22,9 +22,19 @@ namespace Purchase.UI
         public GameObject[] UpgradeKwekkwekStallItems;
 
         /// <summary>
-        /// All kwekkwek stall upgrade items.
+        /// All isaw stall upgrade items.
         /// </summary>
         public GameObject[] UpgradeIsawStallItems;
+
+        /// <summary>
+        /// All ice cream stall upgrade items.
+        /// </summary>
+        public GameObject[] UpgradeIcecreamStallItems;
+
+        /// <summary>
+        /// All fruitshake stall upgrade items.
+        /// </summary>
+        public GameObject[] UpgradeFruitShakeStallItems;
 
         /// <summary>
         /// The heading text of the purchase UI.
@@ -71,12 +81,18 @@ namespace Purchase.UI
                             FillWithUpgrades(UpgradeIsawStallItems);
 
                             break;
+                        case StallSpaceType.IcecreamStall:
+                            FillWithUpgrades(UpgradeIcecreamStallItems);
+
+                            break;
+                        case StallSpaceType.FruitShakeStall:
+                            FillWithUpgrades(UpgradeFruitShakeStallItems);
+
+                            break;
                         default:
                             throw new System.ArgumentException("Invalid stall type");
                     }
-                    // Add all kwekkwek stall upgrades to the grid.
                     
-
                     break;
 
                 default:

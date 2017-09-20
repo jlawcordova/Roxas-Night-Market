@@ -73,6 +73,7 @@
      <Compile Include="Assets\Scripts\DaySimulation\UI\UIManager.cs" />
      <Compile Include="Assets\Scripts\Loader.cs" />
      <Compile Include="Assets\Scripts\Mainscreen\Background.cs" />
+     <Compile Include="Assets\Scripts\Mainscreen\FacebookPanel.cs" />
      <Compile Include="Assets\Scripts\Mainscreen\GameLogo.cs" />
      <Compile Include="Assets\Scripts\Mainscreen\MainPanel.cs" />
      <Compile Include="Assets\Scripts\Mainscreen\TapText.cs" />
@@ -92,6 +93,7 @@
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Buttons\UpgradeStallButton.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\ClickSelectionManager.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Panels\GuidePanel.cs" />
+     <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Panels\MayorEnder.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Panels\ResetConfirmationPanel.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Panels\SelectionPanel.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Panels\SellConfirmationPanel.cs" />
@@ -102,6 +104,7 @@
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Texts\MoneyChangeText.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Texts\MoneyText.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Texts\ThreeDimensionText.cs" />
+     <Compile Include="Assets\Scripts\PreparationSceneUI\UI\Texts\WarningText.cs" />
      <Compile Include="Assets\Scripts\PreparationSceneUI\UI\UIManager.cs" />
      <Compile Include="Assets\Scripts\Progress\ProfitTracker.cs" />
      <Compile Include="Assets\Scripts\Progress\ProgressData.cs" />
@@ -109,8 +112,11 @@
      <Compile Include="Assets\Scripts\Progress\ProgressManager.cs" />
      <Compile Include="Assets\Scripts\Purchase\UI\Buttons\BackButton.cs" />
      <Compile Include="Assets\Scripts\Purchase\UI\Buttons\BuyButton.cs" />
+     <Compile Include="Assets\Scripts\Purchase\UI\Buttons\ConfirmationNoButton.cs" />
+     <Compile Include="Assets\Scripts\Purchase\UI\Buttons\ConfirmationOkButton.cs" />
      <Compile Include="Assets\Scripts\Purchase\UI\Buttons\OkButton.cs" />
      <Compile Include="Assets\Scripts\Purchase\UI\MovingBackground.cs" />
+     <Compile Include="Assets\Scripts\Purchase\UI\Panels\BuyConfirmationPanel.cs" />
      <Compile Include="Assets\Scripts\Purchase\UI\Panels\CongratsPanel.cs" />
      <Compile Include="Assets\Scripts\Purchase\UI\Panels\PurchaseDetailsPanel.cs" />
      <Compile Include="Assets\Scripts\Purchase\UI\Panels\PurchaseItemPanel.cs" />
@@ -130,9 +136,9 @@
      <Compile Include="Assets\Scripts\StallSpace\StallSpaceType.cs" />
      <Compile Include="Assets\Scripts\StallSpace\StallStockDisplay.cs" />
      <Compile Include="Assets\Scripts\StallSpace\Upgrades\AttractionIncreaseUpgrade.cs" />
-     <Compile Include="Assets\Scripts\StallSpace\Upgrades\IsawStall\IsawGrill.cs" />
-     <Compile Include="Assets\Scripts\StallSpace\Upgrades\KwekKwekStall\AppleCiderVinegar.cs" />
      <Compile Include="Assets\Scripts\StallSpace\Upgrades\PatienceIncreaseUpgrade.cs" />
+     <Compile Include="Assets\Scripts\StallSpace\Upgrades\PurchaseIncreaseUpgrade.cs" />
+     <Compile Include="Assets\Scripts\StallSpace\Upgrades\ServeTimeDecreaseUpgrade.cs" />
      <Compile Include="Assets\Scripts\StallSpace\Upgrades\StockIncreaseUpgrade.cs" />
      <Compile Include="Assets\Scripts\StallSpace\Upgrades\Upgrade.cs" />
      <Compile Include="Assets\Scripts\StallSpace\Upgrades\UpgradeData.cs" />
@@ -141,6 +147,7 @@
      <Compile Include="Assets\Scripts\StartStory\Car.cs" />
      <Compile Include="Assets\Scripts\StartStory\ClickToNextScene.cs" />
      <Compile Include="Assets\Scripts\StartStory\DialoguePanel.cs" />
+     <Compile Include="Assets\Scripts\StartStory\Mayor.cs" />
      <Compile Include="Assets\Scripts\StartStory\TutorialHandler.cs" />
      <Compile Include="Assets\Scripts\UnlockedScene\CustomerNameText.cs" />
      <Compile Include="Assets\Scripts\UnlockedScene\UnlockCustomerInformation.cs" />

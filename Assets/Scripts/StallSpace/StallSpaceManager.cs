@@ -37,6 +37,14 @@ namespace StallSpace
         /// Used to instantiate isaw stalls.
         /// </summary>
         public GameObject IsawStallPrefab;
+        /// <summary>
+        /// Used to instantiate icecream stalls.
+        /// </summary>
+        public GameObject IcecreamStallPrefab;
+        /// <summary>
+        /// Used to instantiate fruitshake stalls.
+        /// </summary>
+        public GameObject FruitShakeStallPrefab;
         #endregion
 
         /// <summary>
@@ -93,6 +101,24 @@ namespace StallSpace
                     case StallSpaceType.IsawStall:
                         #region Create IsawStall Stall
                         stall = Instantiate(IsawStallPrefab, new Vector3(((stallSpace.StallSpaceNumber - 1) * StallSpaceIntervals), 2, 0), Quaternion.identity);
+
+                        // Set the stall values.
+                        SetStallValues(stall, stallSpace);
+                        #endregion
+
+                        break;
+                    case StallSpaceType.IcecreamStall:
+                        #region Create IcecreamStall Stall
+                        stall = Instantiate(IcecreamStallPrefab, new Vector3(((stallSpace.StallSpaceNumber - 1) * StallSpaceIntervals), 2, 0), Quaternion.identity);
+    
+                        // Set the stall values.
+                        SetStallValues(stall, stallSpace);
+                        #endregion
+
+                        break;
+                    case StallSpaceType.FruitShakeStall:
+                        #region Create IcecreamStall Stall
+                        stall = Instantiate(FruitShakeStallPrefab, new Vector3(((stallSpace.StallSpaceNumber - 1) * StallSpaceIntervals), 2, 0), Quaternion.identity);
 
                         // Set the stall values.
                         SetStallValues(stall, stallSpace);

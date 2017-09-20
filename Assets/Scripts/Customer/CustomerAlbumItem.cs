@@ -48,7 +48,6 @@ namespace Customer.UI
         /// <param name="eventData">Data on the pointer click event.</param>
         public void OnPointerClick(PointerEventData eventData)
         {
-            Debug.Log("Click");
             if (SelectedCustomerAlbumItem != null)
             {
                 SelectedCustomerAlbumItem.GetComponent<Image>().sprite = NotSelectedImage;

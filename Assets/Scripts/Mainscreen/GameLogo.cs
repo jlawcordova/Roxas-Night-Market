@@ -10,6 +10,14 @@ namespace Mainscreen
 
         public float YSpeed;
 
+        void Start()
+        {
+            foreach (GameObject enableObject in EnableObjects)
+            {
+                enableObject.SetActive(false);
+            }
+        }
+
         // Use this for initialization
         void Update()
         {

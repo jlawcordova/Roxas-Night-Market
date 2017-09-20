@@ -17,6 +17,8 @@ namespace PreparationScene.UI.Buttons
         {
             int selectedStallSpaceNumber = UIManager.instance.LastSelectedStallSpace.GetComponent<Stall>().StallSpaceNumber;
 
+            ProgressManager.Money += UIManager.instance.LastSelectedStallSpace.GetComponent<Stall>().StallSellCost;
+
             // Set the stall to be empty.
             ProgressManager.StallSpaces[selectedStallSpaceNumber] = new StallSpaceInformation() { StallSpaceNumber = selectedStallSpaceNumber, SpaceType = StallSpaceType.EmptyStall };
 

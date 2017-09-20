@@ -115,6 +115,14 @@ namespace DaySimulation.UI
                     gameObject.transform.GetChild(0).GetComponent<Image>().sprite = Icons[1];
 
                     break;
+                case StallSpaceType.IcecreamStall:
+                    gameObject.transform.GetChild(0).GetComponent<Image>().sprite = Icons[2];
+
+                    break;
+                case StallSpaceType.FruitShakeStall:
+                    gameObject.transform.GetChild(0).GetComponent<Image>().sprite = Icons[3];
+
+                    break;
                 default:
                     break;
             }

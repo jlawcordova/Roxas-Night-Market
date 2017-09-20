@@ -155,7 +155,7 @@ namespace Progress
                 ProgressManager.PlaceSize = 0;
 
                 // Tutorial is enabled.
-                ProgressManager.TutorialMode = false;
+                ProgressManager.TutorialMode = true;
 
                 // Save the information to the save file.
                 SaveProgressToFile();

@@ -7,6 +7,8 @@
     {
         EmptyStall,
         KwekKwekStall,
-        IsawStall
+        IsawStall,
+        IcecreamStall,
+        FruitShakeStall
     }
 }

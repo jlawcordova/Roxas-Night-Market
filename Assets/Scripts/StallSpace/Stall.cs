@@ -68,7 +68,12 @@ namespace StallSpace
         /// The amount of patience that stall increases for customers.
         /// </summary>
         public int PatienceIncrease;
-        
+
+        /// <summary>
+        /// The amount of coins to get when selling this stall.
+        /// </summary>
+        public int StallSellCost;
+
         [SerializeField]
         private Color highlightColor;
         public Color HighlightColor { get; set; }

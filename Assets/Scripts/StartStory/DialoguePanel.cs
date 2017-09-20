@@ -63,6 +63,10 @@ public class DialoguePanel : MonoBehaviour
     private const int ContinueTextIndex = 1;
 
     /// <summary>
+    /// Informs listeners that a dialogue line has started playing.
+    /// </summary>
+    public event EventHandler DialogueStarted;
+    /// <summary>
     /// Informs listeners that a dialogue line has been displayed fully.
     /// </summary>
     public event EventHandler DialogueFinished;
@@ -70,6 +74,8 @@ public class DialoguePanel : MonoBehaviour
     /// Informs listeners that a all dialogue lines have finished.
     /// </summary>
     public event EventHandler AllDialogueFinished;
+
+    private bool allDialogueFinishedFlag = false;
 
     /// <summary>
     /// The current status of the dialogue.
@@ -102,6 +108,8 @@ public class DialoguePanel : MonoBehaviour
 
         currentDialogueStatus = DialogueStatus.Playing;
         textDelay = SlowTextDelay;
+
+        OnDialogueStarted();
     }
 
     void PlayDisplaySound()
@@ -153,8 +161,8 @@ public class DialoguePanel : MonoBehaviour
                 if (CurrentDialogueIndex + 1 < Dialogues.Length)
                 {
                     OnDialogueFinished();
-
                     continueTextObject.SetActive(true);
+
                     CurrentDialogueIndex++;
 
                     displayedDialogue = new StringBuilder(SpeakerName + ": ");
@@ -162,9 +170,12 @@ public class DialoguePanel : MonoBehaviour
                 }
                 else
                 {
+                    OnDialogueFinished();
                     OnAllDialogueFinished();
-                }
 
+                    allDialogueFinishedFlag = true;
+                }
+                
                 currentDialogueStatus = DialogueStatus.Waiting;
 
                 break;
@@ -189,11 +200,26 @@ public class DialoguePanel : MonoBehaviour
                     // Play the next dialogue.
                     continueTextObject.SetActive(false);
                     currentDialogueStatus = DialogueStatus.Playing;
+                    if (!allDialogueFinishedFlag)
+                    {
+                        OnDialogueStarted();
+                    }
 
                     break;
                 default:
                     break;
             }
+        }
+    }
+
+    /// <summary>
+    /// Occurs when a dialogue has finished playing.
+    /// </summary>
+    void OnDialogueStarted()
+    {
+        if (DialogueStarted != null)
+        {
+            DialogueStarted(this, EventArgs.Empty);
         }
     }
 

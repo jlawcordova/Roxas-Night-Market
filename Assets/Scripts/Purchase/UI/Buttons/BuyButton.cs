@@ -13,6 +13,7 @@ namespace Purchase.UI.Buttons
     public class BuyButton : MonoBehaviour, IPointerClickHandler
     {
         public GameObject CongratsPanelObject;
+        public GameObject ConfirmationPanel;
 
         /// <summary>
         /// Occurs when the buy button has been clicked.
@@ -52,8 +53,10 @@ namespace Purchase.UI.Buttons
                             // TODO Inform the player that a stall is about to be replaced.
                             if (upgrade.Slot == slot)
                             {
-                                ProgressManager.StallSpaces[PurchaseInformation.StallToAffect].StallUpgrades.Remove(upgrade);
-                                break;
+                                BuyConfirmationPanel.instance.RemovableUpgrade = upgrade;
+                                BuyConfirmationPanel.instance.Upgrade = new UpgradeData(upgradeNumber, name, slot);
+                                ConfirmationPanel.SetActive(true);
+                                return;
                             }
                         }
                     }
