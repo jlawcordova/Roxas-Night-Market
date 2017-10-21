@@ -15,7 +15,7 @@ namespace Purchase.UI.Buttons
         /// <param name="eventData">Data on the click event.</param>
         public void OnPointerClick(PointerEventData eventData)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene("PreparationScene");
         }
     }
 }

@@ -10,14 +10,16 @@ namespace PreparationScene.UI.Buttons
     /// </summary>
     public class StartDayButton : MonoBehaviour, IPointerClickHandler
     {
+        public GameObject FadeToSceneObject;
+
         /// <summary>
         /// Load the scene when the button is clicked.
         /// </summary>
         /// <param name="eventData">Data on the pointer event.</param>
         public void OnPointerClick(PointerEventData eventData)
         {
+            FadeToSceneObject.SetActive(true);
             Music.instance.Destroy();
-            SceneManager.LoadScene("DaySimulationScene");
         }
     }
 }

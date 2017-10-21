@@ -7,11 +7,8 @@ namespace DaySimulation.UI
     public class EndDayPanel : MonoBehaviour
     {
         public Vector3 EndPosition;
-
         public float YSpeed;
-
         public GameObject StallProfitPanelObject;
-
         private bool endPositionReached = false;
 
         // Use this for initialization
@@ -23,6 +20,7 @@ namespace DaySimulation.UI
         // Update is called once per frame
         void Update()
         {
+            // Move the end day panel until it reaches the middle of the screen.
             if (!endPositionReached)
             {
                 if (transform.position.y > EndPosition.y)

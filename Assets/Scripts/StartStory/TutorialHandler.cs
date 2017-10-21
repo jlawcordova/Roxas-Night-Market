@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace StartStory
 {
+    /// <summary>
+    /// Handles the tutorial in the preparation scene.
+    /// </summary>
     public class TutorialHandler : MonoBehaviour
     {
         public static int TutorialNumber = 1;
@@ -53,7 +56,7 @@ namespace StartStory
         {
             if (((DialoguePanel)sender).CurrentDialogueIndex == 1)
             {
-                ProgressManager.Money += 2000;
+                ProgressManager.Money += 2500;
             }
         }
 

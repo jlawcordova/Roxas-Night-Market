@@ -130,22 +130,18 @@ namespace Progress
                 ProgressManager.StallSpaces[0] = new StallSpaceInformation() { StallSpaceNumber = 0, SpaceType = StallSpaceType.EmptyStall };
                 ProgressManager.StallSpaces[1] = new StallSpaceInformation() { StallSpaceNumber = 1, SpaceType = StallSpaceType.EmptyStall };
                 ProgressManager.StallSpaces[2] = new StallSpaceInformation() { StallSpaceNumber = 2, SpaceType = StallSpaceType.EmptyStall };
-                
-                ProgressManager.StallSpaces[3] = null;
-                ProgressManager.StallSpaces[4] = null;
-                ProgressManager.StallSpaces[5] = null;
-                ProgressManager.StallSpaces[6] = null;
-                ProgressManager.StallSpaces[7] = null;
-                ProgressManager.StallSpaces[8] = null;
-                ProgressManager.StallSpaces[9] = null;
-                ProgressManager.StallSpaces[10] = null;
-                ProgressManager.StallSpaces[11] = null;
+
+                // Set the remaining stalls to be null.
+                for (int i = 3; i < MaxStallSpacesCount; i++)
+                {
+                    ProgressManager.StallSpaces[i] = null;
+                }
 
                 // Initialize day.
                 ProgressManager.Day = 1;
 
                 // Create initial money.
-                ProgressManager.Money = 100000;
+                ProgressManager.Money = 0;
 
                 // Unlock initial customers.
                 ProgressManager.CustomersUnlocked = new List<int>();
@@ -179,7 +175,7 @@ namespace Progress
             switch (ProgressManager.Day)
             {
                 case 3:
-                    // Unlock granny on day 3.
+                    // Unlock rich kid on day 3.
                     UnlockCustomer(2);
 
                     unlockedCustomerNumber = 2;
@@ -193,12 +189,38 @@ namespace Progress
                     return true;
 
                 case 9:
-                    // Unlock the rich kid on day 9.
+                    // Unlock the granny on day 9.
                     UnlockCustomer(4);
 
                     unlockedCustomerNumber = 4;
                     return true;
 
+                case 15:
+                    // Unlock the vegan on day 15.
+                    UnlockCustomer(5);
+
+                    unlockedCustomerNumber = 5;
+                    return true;
+
+                case 24:
+                    // Unlock Vice Gander on day 24.
+                    UnlockCustomer(6);
+
+                    unlockedCustomerNumber = 6;
+                    return true;
+
+                case 35:
+                    // Unlock P. Diggy on day 35.
+                    UnlockCustomer(7);
+
+                    unlockedCustomerNumber = 7;
+                    return true;
+                case 50:
+                    // Unlock the chicken head on day 50.
+                    UnlockCustomer(8);
+
+                    unlockedCustomerNumber = 8;
+                    return true;
                 default:
                     break;
             }
@@ -206,6 +228,16 @@ namespace Progress
             unlockedCustomerNumber = 0;
             return false;
         }
+
+        /// <summary>
+        /// Checks of a customer is unlocked.
+        /// </summary>
+        /// <returns>The indication if the game has reached its endpoint.</returns>
+        public static bool CheckGameEnd()
+        {
+            return ProgressManager.Day == 100;
+        }
+
 
         /// <summary>
         /// Unlocks a customer number and saves the progress to the save file.

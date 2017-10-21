@@ -64,6 +64,7 @@ namespace Customer
         /// </summary>
         public int ExtraPayment;
         public bool IsAttractedToEverything;
+        public StallSpaceType[] HatedStallTypes;
         #endregion
 
         #region Current Customer Values
@@ -486,6 +487,14 @@ namespace Customer
         /// <returns></returns>
         private bool IsAttractedToStall(Stall stall)
         {
+            foreach (StallSpaceType hatedType in HatedStallTypes)
+            {
+                if (stall.SpaceType == hatedType)
+                {
+                    return false;
+                }
+            }
+
             // Get random number of attraction.
             int attraction = Random.Range(0, 100);
 
@@ -577,6 +586,7 @@ namespace Customer
         /// <param name="type"></param>
         private void GenerateBubble(CustomerBubbleType type)
         {
+            // TODO Needs refactoring. A single function call can be made.
             switch (type)
             {
                 case CustomerBubbleType.Happy:

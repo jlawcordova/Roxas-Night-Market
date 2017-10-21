@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using Progress;
 using UnlockedScene;
+using UnityEngine.Advertisements;
 
 namespace DaySimulation.UI.Buttons
 {
@@ -18,21 +19,31 @@ namespace DaySimulation.UI.Buttons
         public void OnPointerClick(PointerEventData eventData)
         {
             SpeedManager.instance.SetToNormalSpeed();
-
-            int unlockedCustomerNumber;
-
-            // Check if a customer is unlocked.
-            if (ProgressManager.CheckCustomerUnlock(out unlockedCustomerNumber))
+            
+            // Check if the game has reached its endpoint.
+            if (ProgressManager.CheckGameEnd())
             {
-                UnlockCustomerInformation.CustomerNumber = unlockedCustomerNumber;
-                SceneManager.LoadScene("UnlockedCustomerScene");
+                PlayerPrefs.SetInt("EndingCompleted", 0);
+                SceneManager.LoadScene("GoodEndingScene");
             }
             else
             {
-                // Just load normally if no customer is unlocked.
-                ProfitTracker.instance.Reset();
+                int unlockedCustomerNumber;
 
-                SceneManager.LoadScene("PreparationScene");
+                // Check if a customer is unlocked.
+                if (ProgressManager.CheckCustomerUnlock(out unlockedCustomerNumber))
+                {
+                    UnlockCustomerInformation.CustomerNumber = unlockedCustomerNumber;
+                    SceneManager.LoadScene("UnlockedCustomerScene");
+                }
+                else
+                {
+                    // Just load normally if no customer is unlocked.
+                    ProfitTracker.instance.Reset();
+
+                    Advertisement.Show();
+                    SceneManager.LoadScene("PreparationScene");
+                }
             }
         }
     }

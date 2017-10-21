@@ -9,6 +9,7 @@
         KwekKwekStall,
         IsawStall,
         IcecreamStall,
-        FruitShakeStall
+        FruitShakeStall,
+        Fountain
     }
 }

@@ -135,12 +135,15 @@ namespace StallSpace
             transform.SetAsLastSibling();
 
             // Set the stock count display.
-            StockCountDisplay.transform.position = new Vector3(transform.GetComponent<RectTransform>().rect.size.x / 2 + StockCountDisplayXOffset, 
-                transform.GetComponent<RectTransform>().rect.size.y / 2 + StockCountDisplayyOffset, 
+            if (StockCountDisplay != null)
+            {
+                StockCountDisplay.transform.position = new Vector3(transform.GetComponent<RectTransform>().rect.size.x / 2 + StockCountDisplayXOffset,
+                transform.GetComponent<RectTransform>().rect.size.y / 2 + StockCountDisplayyOffset,
                 0);
 
-            stockCountDisplay = Instantiate(StockCountDisplay, gameObject.transform);
-            SetStockCountDisplay(stockCount);
+                stockCountDisplay = Instantiate(StockCountDisplay, gameObject.transform);
+                SetStockCountDisplay(stockCount);
+            }
             
             // Add all upgrades.
             if (StallUpgrades != null)
@@ -176,7 +179,11 @@ namespace StallSpace
         /// </summary>
         public void Buy(int amount, int extraPayment)
         {
-            StockCount--;
+            // TODO Refactor this. Make the fountain more loosely coupled from the stall script.
+            if (SpaceType != StallSpaceType.Fountain)
+            {
+                StockCount--;
+            }
 
             // Update the profit tracker.
             ProfitTracker.instance.StallProfit[this.StallSpaceNumber] += StallProductPurchaseCost + extraPayment;

@@ -22,6 +22,7 @@ namespace StallSpace
         /// The amount of X intervals of the stalls.
         /// </summary>
         public float StallSpaceIntervals;
+        public bool ShowEmptyStalls = true;
         #endregion
 
         #region Stall Prefabs
@@ -45,6 +46,10 @@ namespace StallSpace
         /// Used to instantiate fruitshake stalls.
         /// </summary>
         public GameObject FruitShakeStallPrefab;
+        /// <summary>
+        /// Used to instantiate fountains.
+        /// </summary>
+        public GameObject FountainPrefab;
         #endregion
 
         /// <summary>
@@ -83,11 +88,14 @@ namespace StallSpace
                 {
                     case StallSpaceType.EmptyStall:
                         #region Create Empty Stall Space
-                        stall = Instantiate(EmptyStallPrefab, new Vector3(((stallSpace.StallSpaceNumber - 1) * StallSpaceIntervals), 1.5f, 0), Quaternion.identity);
-                        stall.GetComponent<StallSpace>().StallSpaceNumber = stallSpace.StallSpaceNumber;
+                        if (ShowEmptyStalls)
+                        {
+                            stall = Instantiate(EmptyStallPrefab, new Vector3(((stallSpace.StallSpaceNumber - 1) * StallSpaceIntervals), 1.5f, 0), Quaternion.identity);
+                            stall.GetComponent<StallSpace>().StallSpaceNumber = stallSpace.StallSpaceNumber;
+                        }
 
                         break;
-                        #endregion
+                    #endregion
 
                     case StallSpaceType.KwekKwekStall:
                         #region Create KwekKwek Stall
@@ -119,6 +127,15 @@ namespace StallSpace
                     case StallSpaceType.FruitShakeStall:
                         #region Create IcecreamStall Stall
                         stall = Instantiate(FruitShakeStallPrefab, new Vector3(((stallSpace.StallSpaceNumber - 1) * StallSpaceIntervals), 2, 0), Quaternion.identity);
+
+                        // Set the stall values.
+                        SetStallValues(stall, stallSpace);
+                        #endregion
+
+                        break;
+                    case StallSpaceType.Fountain:
+                        #region Create IcecreamStall Stall
+                        stall = Instantiate(FountainPrefab, new Vector3(((stallSpace.StallSpaceNumber - 1) * StallSpaceIntervals), 2, 0), Quaternion.identity);
 
                         // Set the stall values.
                         SetStallValues(stall, stallSpace);

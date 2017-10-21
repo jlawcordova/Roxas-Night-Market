@@ -149,7 +149,22 @@ namespace PreparationScene.UI.Panels
                     ButtonsOnPanel.Add(Instantiate(BuyStallButton, transform));
                     break;
                 case StallSpaceType.KwekKwekStall:
-                    ButtonsOnPanel.Add(Instantiate(AddStockButton, transform));
+                    FillAllButtons();
+
+                    break;
+                case StallSpaceType.IsawStall:
+                    FillAllButtons();
+
+                    break;
+                case StallSpaceType.IcecreamStall:
+                    FillAllButtons();
+
+                    break;
+                case StallSpaceType.FruitShakeStall:
+                    FillAllButtons();
+
+                    break;
+                case StallSpaceType.Fountain:
                     if (UpgradeStallButton != null)
                     {
                         ButtonsOnPanel.Add(Instantiate(UpgradeStallButton, transform));
@@ -166,6 +181,19 @@ namespace PreparationScene.UI.Panels
 
             goingDown = false;
             goingUp = true;
+        }
+
+        public void FillAllButtons()
+        {
+            ButtonsOnPanel.Add(Instantiate(AddStockButton, transform));
+            if (UpgradeStallButton != null)
+            {
+                ButtonsOnPanel.Add(Instantiate(UpgradeStallButton, transform));
+            }
+            if (SellStallButton != null)
+            {
+                ButtonsOnPanel.Add(Instantiate(SellStallButton, transform));
+            }
         }
 
         /// <summary>

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class ClickToNextScene : MonoBehaviour, IPointerClickHandler
 {
     public GameObject DialoguePanelObject;
+    public GameObject FadeToSceneObject;
 
     private bool isAllDialogueFinished = false;
 
@@ -23,7 +24,7 @@ public class ClickToNextScene : MonoBehaviour, IPointerClickHandler
     {
         if (isAllDialogueFinished)
         {
-            SceneManager.LoadScene("TutorialPreparationScene");
+            FadeToSceneObject.SetActive(true);
         }
     }
 }

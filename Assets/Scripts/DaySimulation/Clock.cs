@@ -137,6 +137,10 @@ namespace DaySimulation
                 {
                     ProgressManager.Day++;
                     DayIncremented = true;
+
+                    // Unlock a customer if possible.
+                    int unlockedCustomerNumber;
+                    ProgressManager.CheckCustomerUnlock(out unlockedCustomerNumber);
                 }
                 ProgressManager.SaveProgressToFile();
 

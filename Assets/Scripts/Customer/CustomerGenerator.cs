@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using DaySimulation;
 using Progress;
+using StallSpace;
+using StallSpace.Upgrades;
 
 namespace Customer
 {
@@ -65,6 +67,39 @@ namespace Customer
         /// </summary>
         private bool runGenerator = true;
         #endregion
+
+        /// <summary>
+        /// Initialization of the customer generator.
+        /// </summary>
+        void Start()
+        {
+            // TODO Refactor this. Make the fountain script more loosely coupled from this script.
+            const int fountainCustomerIncrease = 15;
+            const int sampaguitaCustomerIncrease = 5;
+
+            foreach (StallSpaceInformation stallSpace in ProgressManager.StallSpaces)
+            {
+                if (stallSpace != null)
+                {
+                    if (stallSpace.SpaceType == StallSpaceType.Fountain)
+                    {
+                        GeneratingChance += fountainCustomerIncrease;
+                        // TODO Refactor to loosely couple fountain upgrades from this script.
+                        if (stallSpace.StallUpgrades != null)
+                        {
+                            foreach (UpgradeData upgradeData in stallSpace.StallUpgrades)
+                            {
+                                const int SampaguitaUpgrade = 1;
+                                if (upgradeData.UpgradeNumber == SampaguitaUpgrade)
+                                {
+                                    GeneratingChance += sampaguitaCustomerIncrease;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         /// <summary>
         /// Called once every Delta time.

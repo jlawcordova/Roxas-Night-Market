@@ -15,6 +15,8 @@ namespace Purchase.UI.Buttons
         public GameObject CongratsPanelObject;
         public GameObject ConfirmationPanel;
 
+        public GameObject NotEnoughCoinsText;
+
         /// <summary>
         /// Occurs when the buy button has been clicked.
         /// </summary>
@@ -28,6 +30,12 @@ namespace Purchase.UI.Buttons
                 {
                     // Add the purchased stall into the stallspace.
                     ProgressManager.StallSpaces[PurchaseInformation.StallToAffect].SpaceType = ((StallPurchaseItemPanel)PurchaseItemPanel.SelectedPurchaseItem).Type;
+                    // TODO Refactor this. Make the fountain script more loosly coupled from this script.
+                    if (((StallPurchaseItemPanel)PurchaseItemPanel.SelectedPurchaseItem).Type == StallSpace.StallSpaceType.Fountain)
+                    {
+                        // Set a fountain with a stock count of 1 which will never be sold.
+                        ProgressManager.StallSpaces[PurchaseInformation.StallToAffect].StockCount = 1;
+                    }
                     // Deduct money based on item cost.
                     ProgressManager.Money -= PurchaseItemPanel.SelectedPurchaseItem.ItemCost;
                 }
@@ -69,6 +77,10 @@ namespace Purchase.UI.Buttons
                 }
 
                 CongratsPanelObject.GetComponent<CongratsPanel>().Appear((PurchaseItemPanel.SelectedPurchaseItem).ItemName, (PurchaseItemPanel.SelectedPurchaseItem).ItemDetailSprite);
+            }
+            else
+            {
+                Instantiate(NotEnoughCoinsText, gameObject.transform.parent.parent);
             }
         }
     }

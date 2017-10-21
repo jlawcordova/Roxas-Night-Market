@@ -37,6 +37,11 @@ namespace Purchase.UI
         public GameObject[] UpgradeFruitShakeStallItems;
 
         /// <summary>
+        /// All fountain upgrade items.
+        /// </summary>
+        public GameObject[] UpgradeFountainItems;
+
+        /// <summary>
         /// The heading text of the purchase UI.
         /// </summary>
         public Text HeadingText;
@@ -87,6 +92,10 @@ namespace Purchase.UI
                             break;
                         case StallSpaceType.FruitShakeStall:
                             FillWithUpgrades(UpgradeFruitShakeStallItems);
+
+                            break;
+                        case StallSpaceType.Fountain:
+                            FillWithUpgrades(UpgradeFountainItems);
 
                             break;
                         default:

@@ -2,15 +2,13 @@
 using UnityEngine.SceneManagement;
 
 public class Loader : MonoBehaviour {
+
+    // The time it takes before moving to the next scene.
     public int Time = 300;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         if (Time <= 0)
         {
             SceneManager.LoadScene("MainScreenScene");

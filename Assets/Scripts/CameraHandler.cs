@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Handles the dragging of the camera.
+/// </summary>
 public class CameraHandler : MonoBehaviour
 {
     [HideInInspector]
@@ -26,12 +29,14 @@ public class CameraHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Get the initial position of the pointer when it is down.
         if (Input.GetMouseButtonDown(0))
         {
             DragOrigin = Input.mousePosition;
             return;
         }
 
+        // Perform the movement to be made when dragging.
         if (Input.GetMouseButton(0))
         {
             Vector3 position = Camera.main.ScreenToViewportPoint(Input.mousePosition - DragOrigin);

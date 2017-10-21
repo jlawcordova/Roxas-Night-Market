@@ -6,12 +6,15 @@ namespace Mainscreen
     {
         public Vector3 FinalPosition;
 
+        public GameObject FadingObject;
         public GameObject[] EnableObjects;
 
         public float YSpeed;
 
         void Start()
         {
+            FadingObject.SetActive(false);
+
             foreach (GameObject enableObject in EnableObjects)
             {
                 enableObject.SetActive(false);

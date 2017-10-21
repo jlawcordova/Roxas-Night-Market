@@ -123,6 +123,10 @@ namespace DaySimulation.UI
                     gameObject.transform.GetChild(0).GetComponent<Image>().sprite = Icons[3];
 
                     break;
+                case StallSpaceType.Fountain:
+                    gameObject.transform.GetChild(0).GetComponent<Image>().sprite = Icons[4];
+
+                    break;
                 default:
                     break;
             }

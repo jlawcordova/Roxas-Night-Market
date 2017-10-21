@@ -45,12 +45,12 @@ namespace PreparationScene.UI
                 bool didHitObject = false;
 
                 // Check if an empty stall is hit.
-                didHitObject = CheckRaycastHitToBringDownPanel(ray, EmptyStallLayer, StallSpaceType.EmptyStall);
+                didHitObject = CheckRaycastHitToBringDownPanel(ray, EmptyStallLayer);
 
                 // Check if a stall is clicked.
                 if (!didHitObject)
                 {
-                    didHitObject = CheckRaycastHitToBringDownPanel(ray, StallLayer, StallSpaceType.KwekKwekStall);
+                    didHitObject = CheckRaycastHitToBringDownPanel(ray, StallLayer);
                 }
 
                 // Check if nothing is clicked.
@@ -79,7 +79,7 @@ namespace PreparationScene.UI
         /// <param name="layerMask">The layer mask of the object that the ray must hit.</param>
         /// <param name="stallSpaceType">The SelectableObjectType that will set the UIManager's selected stall space type if an object is hit.</param>
         /// <returns></returns>
-        bool CheckRaycastHitToBringDownPanel(Vector2 ray, LayerMask layerMask, StallSpaceType stallSpaceType)
+        bool CheckRaycastHitToBringDownPanel(Vector2 ray, LayerMask layerMask)
         {
             selectedHit = Physics2D.Raycast(ray, Vector2.zero, 0f, layerMask);
             if (selectedHit)
@@ -92,7 +92,7 @@ namespace PreparationScene.UI
                     UIManager.instance.SelectedStallSpace = selectedHit.transform.gameObject;
                     UIManager.instance.SelectedStallSpace.GetComponent<IHighlightable>().Highlight();
                     UIManager.instance.LastSelectedStallSpace = selectedHit.transform.gameObject;
-                    UIManager.instance.SelectedStallSpaceType = stallSpaceType;
+                    UIManager.instance.SelectedStallSpaceType = selectedHit.transform.gameObject.GetComponent<StallSpace.StallSpace>().SpaceType;
 
                     // Make the panel go up.
                     UIManager.instance.DisplayedSelectionPanel.GetComponent<SelectionPanel>().GoUp();
@@ -107,7 +107,7 @@ namespace PreparationScene.UI
                     UIManager.instance.SelectedStallSpace = selectedHit.transform.gameObject;
                     UIManager.instance.SelectedStallSpace.GetComponent<IHighlightable>().Highlight();
                     UIManager.instance.LastSelectedStallSpace = selectedHit.transform.gameObject;
-                    UIManager.instance.SelectedStallSpaceType = stallSpaceType;
+                    UIManager.instance.SelectedStallSpaceType = selectedHit.transform.gameObject.GetComponent<StallSpace.StallSpace>().SpaceType;
 
                     // Make the panel reset.
                     UIManager.instance.DisplayedSelectionPanel.GetComponent<SelectionPanel>().Reset();
