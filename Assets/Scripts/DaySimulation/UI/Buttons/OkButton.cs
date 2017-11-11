@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using Progress;
 using UnlockedScene;
-using UnityEngine.Advertisements;
+//using UnityEngine.Advertisements;
 
 namespace DaySimulation.UI.Buttons
 {
@@ -41,7 +41,7 @@ namespace DaySimulation.UI.Buttons
                     // Just load normally if no customer is unlocked.
                     ProfitTracker.instance.Reset();
 
-                    Advertisement.Show();
+                    //Advertisement.Show();
                     SceneManager.LoadScene("PreparationScene");
                 }
             }

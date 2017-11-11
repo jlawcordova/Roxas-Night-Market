@@ -6,9 +6,11 @@ namespace Mainscreen
 {
     public class FacebookPanel : MonoBehaviour, IPointerClickHandler
     {
+        public string ClickURL;
+
         public void OnPointerClick(PointerEventData eventData)
         {
-            Application.OpenURL("https://web.facebook.com/CordlessGames");
+            Application.OpenURL(ClickURL);
         }
     }
 }

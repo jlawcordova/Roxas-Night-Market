@@ -12,8 +12,6 @@ namespace Progress
     /// </summary>
     public class NetworthCalculator : MonoBehaviour
     {
-        public int Networth = 0;
-
         public int[] StallValues;
 
         public GameObject[] KwekKwekStallUpgradeValues;
@@ -22,10 +20,9 @@ namespace Progress
         public GameObject[] FruitShakeStallUpgradeValues;
         public GameObject[] FountainUpgradeValues;
 
-        // Use this for initialization
-        void Awake()
+        public int CalculateNetworth()
         {
-            Networth = 0;
+            int Networth = 0;
 
             // Add all the values of the stalls (including upgrades).
             foreach (StallSpaceInformation stallSpace in ProgressManager.StallSpaces)
@@ -68,6 +65,8 @@ namespace Progress
             }
 
             Networth += ProgressManager.Money;
+
+            return Networth;
         }
 
         /// <summary>

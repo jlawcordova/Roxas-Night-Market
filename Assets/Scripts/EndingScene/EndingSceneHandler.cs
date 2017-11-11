@@ -26,7 +26,7 @@ namespace EndingScene
         void Start()
         {
             // Get the networth.
-            networth = NetworthCalculator.GetComponent<NetworthCalculator>().Networth;
+            networth = NetworthCalculator.GetComponent<NetworthCalculator>().CalculateNetworth();
             // Set the dialogue text depending on the networth.
             Dialogue1PanelObject.GetComponent<DialoguePanel>().Dialogues[1] = "... Roxas Night Market's net worth is valued at " + networth + " coins!";
             if (networth < 30000)
